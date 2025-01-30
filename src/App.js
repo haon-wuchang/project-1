@@ -4,8 +4,11 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'; //react-router-do
 import Layout from './pages/Layout.jsx';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx'
 import Carts from './pages/Carts.jsx';
 import Person from './pages/Person.jsx';
+import Products from './pages/Products.jsx';
+import DetailProducts from './pages/DetailProducts.jsx';
 function App() {
   return (
     <>
@@ -13,12 +16,12 @@ function App() {
           <Routes>
             <Route path='/' element={<Layout/>}>
                     <Route index element={<Home/>}></Route>
-                    {/* <Route path='/all' element={<Products/>}></Route>     */}
+                    <Route path='/all' element={<Products/>}></Route>    
                     <Route path='/login' element={<Login/>}></Route>    
-                    <Route path='/cart' element={<Carts/>}></Route>    
+                    <Route path='/signup' element={<Signup/>}></Route>    
+                    <Route path='/carts' element={<Carts/>}></Route>    
                     <Route path='/person' element={<Person/>}></Route>
-                    {/* <Route path='/signup' element={<Signup/>}></Route>     */}
-                    {/* <Route path={`/products/:pid`} element={<DetailProduct2 addCart={addCart}/>}> </Route> */}
+                    <Route path={`/detail`} element={<DetailProducts/>}></Route>
             </Route>
           </Routes>
         </BrowserRouter>

@@ -259,6 +259,10 @@ header{
     align-items: center;
     margin: 0;
 }
+.header-bottom .nav-right .nav-special{
+    display: flex;
+    gap: 30px;
+}
 .header-bottom .nav-main{
     display: flex;
     gap: 20px;
@@ -1172,4 +1176,368 @@ footer .etc .etc-right{
     width: 2px;
     height: 2px;
     background: gray;
+}
+
+
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* =========================================Detail Products============================================== */
+/* ============================================================================================= */
+/* ============================================================================================= */
+/* ============================================================================================= */
+.detail-top-wrap{
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+}
+.detail-top-wrap>div{
+    margin: 0;
+}
+.breadcrumb>ol {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 20px;
+}
+.breadcrumb>ol>li {
+    margin-right: 8px;
+    font-size: var(--F13);
+    line-height: var(--F13L);
+}
+.breadcrumb a {
+    padding-right: 20px;
+    background: url(https://www.ssfshop.com/v3/images/svgs/chevron-right-12.svg) no-repeat right center / 12px auto;
+    color: var(--gray450);
+}
+.set-right {
+    display: flex;
+    justify-content: flex-end;
+    float: none;
+    max-width: 1440px;
+    box-sizing: border-box;
+    border: 1px solid blue;
+}
+.set-right>span{
+    margin: 0;
+}
+.set-right .heart label {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-right: 24px;
+    padding-left: 24px;
+}
+.set-right .heart label>i {
+    display: block;
+    overflow: hidden;
+    width: 24px;
+    height: 24px;
+    background: url(https://www.ssfshop.com/v3/images/svgs/like-24-gray450.svg) left center / 24px auto no-repeat;
+    border: 1px solid red;
+}
+.share {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    z-index: 3;
+}
+.share>a {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(https://www.ssfshop.com/v3/images/svgs/share.svg) no-repeat center top / 24px auto;
+    font-size: 0;
+    color: transparent;
+}
+.share .sns{
+    display: none;
+    z-index: 2;
+    position: absolute;
+    top: -3px;
+    right: 0;
+    vertical-align: middle;
+    border: 1px solid purple;
+}
+.share .sns.on{
+    display: flex;
+    width: 300px;
+    height: 100%;
+    background-color: yellow;
+}
+.share .sns .facebook {
+    background: url(https://www.ssfshop.com/v3/images/svgs/facebook.svg) left center / 24px auto no-repeat;
+}
+.share .sns .twitter {
+    background: url(https://www.ssfshop.com/v3/images/svgs/twitter.svg) left center / 24px auto no-repeat;
+}
+.share .sns .pinterest {
+    background: url(https://www.ssfshop.com/v3/images/svgs/pinterest.svg) left center / 24px auto no-repeat;
+}
+.share .sns .url {
+    background: url(https://www.ssfshop.com/v3/images/svgs/copy-url.svg) left center / 24px auto no-repeat;
+}
+
+
+.gods-summary {
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 120px;
+}
+.gods-summary .godsImg-area {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0 12px;
+    width: calc(750* 100% / 1400);
+    min-width: 717px;
+    box-sizing: border-box;
+}
+.gods-summary .godsImg-area .preview-thumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-width: 164px;
+    max-width: 164px;
+}
+.gods-summary .godsImg-area .preview-img {
+    position: relative;
+    width: calc(750* 100% / 750);
+    min-width: 541px;
+}
+.gods-summary .godsImg-area .preview-img .img-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 133.2753%;
+}
+.gods-summary .godsImg-area .preview-img .img-wrap .img-item.active {
+    display: block;
+}
+.gods-summary .godsImg-area .preview-img .img-wrap .img-item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .03);
+}
+.gods-summary .godsImg-area .preview-img .img-wrap .img-item img {
+    height: 100%;
+    object-fit: contain;
+}
+.gods-summary .godsImg-area .preview-img .img-wrap .img-item {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.gods-summary .godsImg-area .preview-img .preview-lens {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(https://www.ssfshop.com/v3/images/ui/bg_zoom_pattern.png);
+}
+.gods-summary .godsImg-area .preview-img .preview-zoom {
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 20px);
+    z-index: 12;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    background-color: blue;
+    opacity: 10%;
+}
+.gods-summary .godsImg-area .preview-img .preview-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+}
+.gods-summary .godsImg-area .preview-img .preview-btn.btn-prev {
+    left: 12px;
+    background: url(https://www.ssfshop.com/v3/images/svgs/chevron-left-44-white.svg) no-repeat center / 44px auto;
+}
+.gods-summary .godsImg-area .preview-img .preview-btn.btn-next {
+    right: 12px;
+    background: url(https://www.ssfshop.com/v3/images/svgs/chevron-right-44-white.svg) no-repeat center / 44px auto;
+}
+
+.gods-summary .godsInfo-area {
+    width: calc(550* 100% / 1400);
+    min-width: 483px;
+}
+.gods-summary .godsInfo-area .tags {
+    margin-bottom: 12px;
+}
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--F12);
+    line-height: var(--F12L);
+    color: var(--gray900);
+}
+.gods-summary .godsInfo-area .brand-name {
+    margin-bottom: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: var(--F20);
+    line-height: var(--F20L);
+    font-weight: 700;
+    text-decoration: underline;
+}
+.gods-summary .godsInfo-area .gods-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 46px;
+    margin-bottom: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: var(--F17);
+    line-height: var(--F17L);
+}
+.gods-summary .godsInfo-area .price-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    margin-bottom: 24px;
+}
+.gods-summary .godsInfo-area .price-info span, 
+.gods-summary .godsInfo-area .price-info button{
+    margin: 0;
+} 
+.gods-summary .godsInfo-area .gods-price {
+    font-size: var(--F15);
+    line-height: var(--F15L);
+    color: var(--gray900);
+}
+.gods-summary .gods-price .cost {
+    display: block;
+    color: var(--gray500);
+}
+.gods-summary .gods-price .sale {
+    display: flex;
+    align-items: center;
+    line-height: 26px;
+}
+.gods-summary .gods-price .sale .discount {
+    color: var(--purple500);
+}
+.gods-summary .gods-price .sale em {
+    display: inline-block;
+    margin-right: 2px;
+    font-size: var(--F20);
+    font-weight: 700;
+}
+.gods-summary .godsInfo-area .price-info .btn.sm {
+    width: 120px;
+    border-radius: var(--radius);
+}
+.gods-summary .godsInfo-area .review-info {
+    border: 1px solid red;
+    display: flex;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 24px;
+    margin-bottom: 11px;
+    padding: 12px 0;
+    font-size: var(--F14);
+    line-height: var(--F14L);
+    color: var(--gray600);
+}
+.gods-summary .review-info .point {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    color: var(--gray900);
+    font-weight: 700;
+}
+.gods-summary .review-info .point [aria-label=rate] {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+    background: url(https://www.ssfshop.com/v3/images/svgs/star-fill.svg) center / 16px auto no-repeat;
+}
+.gods-summary .review-info>a{
+    margin: 0;
+}
+
+
+/* 상품 정보 리스트 */
+.gods-detail {
+    min-height: calc(100vh - 544px);
+    padding-top: 0 !important;
+}
+.tab-rects {
+    margin-bottom: 40px;
+}
+.gods-detail .tab-rects {
+    margin-bottom: 0;
+}
+
+.tab-rects>ul {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.tab-rects>ul::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--gray250);
+}
+.tab-rects>ul>li[aria-selected=true] {
+    border-bottom: none;
+}
+.tab-rects>ul>li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    width: 20%;
+    height: 60px;
+    padding: 0 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-bottom: 1px solid var(--gray250);
+}
+.tab-rects>ul>li[aria-selected=true], .tab-rects>ul>li[aria-selected=true]>a, .tab-rects>ul>li[aria-selected=true]>span[role=button] {
+    background-color: var(--gray900);
+    color: var(--white);
+}
+.tab-rects>ul>li[aria-selected=true]>a:before, .tab-rects>ul>li[aria-selected=true]>span[role=button]:before {
+    border-color: var(--gray900);
+}
+.tab-rects>ul>li>a:before, .tab-rects>ul>li>span[role=button]:before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }

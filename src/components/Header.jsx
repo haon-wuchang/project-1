@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 
-import Nav from "./Nav.jsx";
+import Nav from "../commons/Nav.jsx";
 import { CiSearch } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
 import { AiOutlineShopping } from "react-icons/ai";
@@ -28,9 +28,9 @@ export default function Header(){
             <div className='icon-shop-wrap'>
               <div className='icon-wrap'>
                 {/* <button type='button'><CiHeart /></button> */}
-                <Link to='/cart'><button type='button'><CiSearch /></button></Link>
-                <Link to='/cart'><button type='button'><CiHeart /></button></Link>
-                <Link to='/cart'><button type='button'><AiOutlineShopping  /></button></Link>
+                <Link to='/detail'><button type='button'><CiSearch /></button></Link>
+                <Link to='/carts'><button type='button'><CiHeart /></button></Link>
+                <Link to='/carts'><button type='button'><AiOutlineShopping  /></button></Link>
               </div>
               <span>|</span>
               <div className='shop-wrap'>

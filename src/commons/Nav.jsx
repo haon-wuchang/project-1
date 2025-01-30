@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+
+
 export default function Nav(){
     return(
         <>
-          <nav className='header-bottom'>
+          <nav className='header-bottom'style={{backgroundColor:"green"}}>
             <div className='nav-left'>
               <ul className='nav-main'>
                   <li>
@@ -53,6 +56,10 @@ export default function Nav(){
             </div>
             <div className='nav-right'>
               <ul className='nav-special'>
+                <li>
+                  <Link to='/signup'>회원가입</Link>
+                  {/* 이 링크는 임시로 넣은 것입니다. 삭제해야합니다. */}
+                </li>
                 <li>
                   <a href='#'>삼성전자</a>
                 </li>

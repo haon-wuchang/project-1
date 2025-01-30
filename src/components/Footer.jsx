@@ -1,4 +1,4 @@
-import Nav from './Nav.jsx';
+import Nav from '../commons/Nav.jsx';
 
 
 export default function Footer(){
