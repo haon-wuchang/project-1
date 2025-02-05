@@ -1,18 +1,18 @@
-import mysql.connector
 import json
+import mysql.connector
 
-# MySQL 연결 정보 설정
+# MySQL 연결 설정
 db = mysql.connector.connect(
     host="localhost",
-    user="root",  # MySQL 사용자명
-    password="mysql1234",  # MySQL 비밀번호
-    database="products"  # 사용할 데이터베이스명
+    user="root",
+    password="mysql1234",
+    database="products_db"
 )
-
 cursor = db.cursor()
 
-# JSON 데이터
-data = [
+# JSON 데이터 (예제)
+json_data = """
+[
     {
       "id": "1",
       "category": "Tops",
@@ -5864,24 +5864,27 @@ data = [
         "discounted_price": 636765
       }
   ]
-# SQL INSERT 실행
-query = """
-INSERT INTO products(id, category, sub_category, name, color, size, image, likes, cart_count, star, original_price, discount_rate, discounted_price) 
-VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
 """
 
-for item in data:
-    cursor.execute(query, (
-        item["id"],
+# JSON 데이터 파싱
+products = json.loads(json_data)
+
+# 상품 데이터 삽입
+for item in products:
+    cursor.execute("""
+        INSERT INTO products (id, category, sub_category, name, color, size, image, likes, cart_count, star, original_price, discount_rate, discounted_price)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """, (
+        int(item["id"]),
         item["category"],
         item["sub_category"],
         item["name"],
-        json.dumps(item["color"]),  # JSON을 문자열로 변환
-        json.dumps(item["size"]),  # JSON을 문자열로 변환
+        json.dumps(item["color"]), 
+        json.dumps(item["size"]),  # size 필드는 JSON 형식으로 저장
         item["image"],
         item["likes"],
         item["cart_count"],
-        item["star"],
+        float(item["star"]),
         item["original_price"],
         item["discount_rate"],
         item["discounted_price"]
@@ -5890,7 +5893,7 @@ for item in data:
 # 변경사항 저장
 db.commit()
 
-# 연결 종료
+# 연결 닫기
 cursor.close()
 db.close()
 
