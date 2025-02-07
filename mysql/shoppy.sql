@@ -1,6 +1,7 @@
 /**
 	SHOPPY 테이블 정의
 */
+show databases;
 -- shoppy_member 테이블 생성
 use hrdb2019;
 select database();
@@ -33,3 +34,24 @@ select * from shoppy_member;
 -- login
 select count(*) as result_rows from shoppy_member
 	where id = 'test11' and pwd = '1111'; 
+    
+    
+    
+    
+    
+    
+use hrdb2019;
+select * from information_schema.tables
+	where table_name like 'shoppy%';
+    
+-- shoppy_product
+create table shoppy_product(
+	pid 	int			primary key		auto_increment,
+    pname 	varchar(50)		not null,
+    price 	int,
+    description		varchar(200),
+    upload_file		varchar(100),
+    source_file		varchar(100),
+    pdate			datetime
+);
+desc shoppy_product;

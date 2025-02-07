@@ -60,7 +60,7 @@ CREATE TABLE customers (
     password VARCHAR(255) NOT NULL,
     address VARCHAR(255),
     birth_date DATE,
-    membership_level ENUM('Bronze','Silver', 'Gold', 'Platinum') DEFAULT 'Silver',
+    membership_level ENUM('Bronze','Silver', 'Gold', 'Platinum') DEFAULT 'Bronze',
     last_login DATETIME
 );
 -- ALTER TABLE customers MODIFY COLUMN membership_level ENUM('Bronze', 'Silver', 'Gold', 'Platinum') DEFAULT 'Silver';
@@ -120,3 +120,11 @@ select * from customers;
 select * from cart;
 
 show databases;
+SELECT id, category, sub_category, name, 
+           JSON_UNQUOTE(color) AS color, 
+           JSON_UNQUOTE(size) AS size, 
+           image, likes, cart_count, star, 
+           original_price, discount_rate, discounted_price
+    FROM products
+    where id < 51;
+    
