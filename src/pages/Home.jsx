@@ -9,6 +9,7 @@ import SubSlideWrap from "../components/mainContents/SubSlide/SubSlideWrap.jsx";
 import HotBrand from "../components/mainContents/HotBrands/HotBrand.jsx";
 export default function Home(){
 
+  
     const sectionList = [
         {
           id: "event",
