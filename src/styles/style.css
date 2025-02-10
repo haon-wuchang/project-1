@@ -1801,7 +1801,7 @@ footer .etc .etc-right{
 }
 .slide-leftBtn{
     position: absolute;
-    top: 280px;
+    top: 370px;
     font-size: 40px;
     color: #ffffff;
     left: 10px;
@@ -1813,7 +1813,7 @@ footer .etc .etc-right{
     position: absolute;
     font-size: 40px;
     right: 65px;
-    top: 280px;
+    top: 370px;
     color: #ffffff;
     opacity: 0.5;
     padding: 10px 5px 10px 10px;
@@ -1822,7 +1822,7 @@ footer .etc .etc-right{
     position: absolute;
     font-size: 40px;
     right: 10px;
-    top: 280px;
+    top: 370px;
     color: #ffffff;
     opacity: 0.5;
     padding: 10px 10px 10px 5px;
@@ -1831,14 +1831,14 @@ footer .etc .etc-right{
     position: absolute;
     font-size: 40px;
     right: 10px;
-    top: 280px;
+    top: 370px;
     color: #ffffff;
     opacity: 0.5;
     padding: 10px 10px 10px 5px;
 }
 .slide-leftBtn-hover{
     position: absolute;
-    top: 280px;
+    top: 370px;
     font-size: 40px;
     color: #ffffff;
     left: 10px;
@@ -1852,7 +1852,7 @@ footer .etc .etc-right{
     position: absolute;
     font-size: 40px;
     right: 65px;
-    top: 280px;
+    top: 370px;
     color: #ffffff;
     opacity: 0.5;
     padding: 10px 5px 10px 10px;
@@ -1863,7 +1863,7 @@ footer .etc .etc-right{
     position: absolute;
     font-size: 40px;
     right: 10px;
-    top: 280px;
+    top: 370px;
     color: #ffffff;
     opacity: 0.5;
     padding: 10px 10px 10px 5px;
@@ -1871,36 +1871,51 @@ footer .etc .etc-right{
     border-radius: 0 10px 10px 0;
 }
 .slide-title{
-    position: absolute;
-    top: 248px;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
     color: rgb(255, 44, 227);
-    /* width: 507px; */
-    border: 1px solid red;
-
+    /* border: 1px solid red; */
+    padding: 10px 0;
 }
 .slide-desc1{
-    position: absolute;
-    top: 288px;
     text-align: center;
     font-size: 30px;
     font-weight: 700;
     color: rgb(255, 31, 161);
-    /* width: 507px; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    padding: 10px 0;
 
 
 }
 .slide-desc2{
-    position: absolute;
-    top: 348px;
     text-align: center;
     font-size: 16px;
     color: rgb(255, 16, 183);
-    /* width: 507px; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    padding: 10px 0;
 
+}
+.haon-test{
+    text-align: center;
+    border: 1px solid blue;
+    top: 305px;
+    position: absolute;
+    width: 100%;
+    /* height: 400px; */
+}
 
+.top-up{
+    text-align: center;
+    border: 1px solid blue;
+    top: 330px;
+    position: absolute;
+    width: 100%;
+}
+.top-middle{
+    text-align: center;
+    border: 1px solid blue;
+    top: 320px;
+    position: absolute;
+    width: 100%;
 }
