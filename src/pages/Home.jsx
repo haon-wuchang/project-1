@@ -4,12 +4,13 @@ import Brand from "../components/mainContents/Brand.jsx";
 import Outer from "../components/mainContents/Outer.jsx";
 import Rank from "../components//mainContents/Rank.jsx";
 import Issue from "../components/mainContents/Issue.jsx";
-import SlideWrap from "../components/mainContents/MainSlide/SlideWrap.jsx";
+// import SlideWrap from "../components/mainContents/MainSlide/SlideWrap.jsx";
 import SubSlideWrap from "../components/mainContents/SubSlide/SubSlideWrap.jsx";
 import HotBrand from "../components/mainContents/HotBrands/HotBrand.jsx";
+import SlideWrap2 from "../components/mainContents/MainSlide/SlideWrap2.jsx";
+
 export default function Home(){
 
-  
     const sectionList = [
         {
           id: "event",
@@ -56,27 +57,8 @@ export default function Home(){
       };
       
     return (
-<main id='content'>
-    {/* 슬라이드 시작 */}
-  <div className="key-visual">
-    <div className="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress" data-component="[object Object]">
-        <div className="swiper-wrapper" id="swiper-wrapper-816f92e3f693e1c3" aria-live="off"
-                  style={{"transition-duration": "0ms", "transform": "translate3d(-3372px, 0px, 0px)"}}>
-                    
-            <SlideWrap/>
-
-        </div>
-                
-        {/* <div className="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-816f92e3f693e1c3"></div>
-        <div className="swiper-button-control">
-            <div className="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-816f92e3f693e1c3"></div>
-            <div className="swiper-button-pause" role="button" aria-label="pause"></div>
-        </div>  */}
-        {/* <span className="swiper-notification" aria-live="assertive" aria-atomic="true"></span> */}
-        {/* 슬라이드 관련한 버튼인데 쓸모 없어서 주석처리 했습니다. */}
-    </div>
-  </div>{/* slide 끝 */}
-
+<main id='content'>  
+  <SlideWrap2/> {/* 슬라이드 */}
   {/* 컨텐츠 시작 */}
   <div className='contents content-wrap'>
   <div className="corner-section">

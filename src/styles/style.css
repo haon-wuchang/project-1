@@ -90,7 +90,7 @@ button, label{
 a.btn, button.btn {
     display: inline-block;
     box-sizing: border-box;
-    padding: 0 20px;
+    /* padding: 0 20px; */ /*하온수정*/
     line-height: 34px;
     font-size: 1.4rem;
     color: gray;
@@ -376,6 +376,10 @@ main>.key-visual {
 .key-visual .brand-info-area * {
     color: #fff;
     text-align: center;
+}
+.brand-name > a{ /*하온추가*/
+     text-decoration: none;
+     color: #000000;
 }
 .key-visual .brand-info-area .brand-name {
     width: 100%;
@@ -1188,9 +1192,10 @@ footer .etc .etc-right{
 /* ============================================================================================= */
 /* ============================================================================================= */
 .detail-top-wrap{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .detail-top-wrap>div{
     margin: 0;
@@ -1199,7 +1204,7 @@ footer .etc .etc-right{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 20px;
+    padding: 20px 0 40px;
 }
 .breadcrumb>ol>li {
     margin-right: 8px;
@@ -1218,6 +1223,7 @@ footer .etc .etc-right{
     max-width: 1440px;
     box-sizing: border-box;
     border: 1px solid blue;
+    align-items: center;
 }
 .set-right>span{
     margin: 0;
@@ -1229,14 +1235,23 @@ footer .etc .etc-right{
     margin-right: 24px;
     padding-left: 24px;
 }
+
 .set-right .heart label>i {
     display: block;
     overflow: hidden;
     width: 24px;
     height: 24px;
     background: url(https://www.ssfshop.com/v3/images/svgs/like-24-gray450.svg) left center / 24px auto no-repeat;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
+.heart{
+    border: 2px solid green;
+    display: flex;
+    align-items: center;
+}
+
+
+
 .share {
     display: inline-block;
     position: relative;
@@ -1247,7 +1262,7 @@ footer .etc .etc-right{
     display: inline-block;
     width: 24px;
     height: 24px;
-    background: url(https://www.ssfshop.com/v3/images/svgs/share.svg) no-repeat center top / 24px auto;
+    /* background: url(https://www.ssfshop.com/v3/images/svgs/share.svg) no-repeat center top / 24px auto; */
     font-size: 0;
     color: transparent;
 }
@@ -1260,13 +1275,17 @@ footer .etc .etc-right{
     vertical-align: middle;
     border: 1px solid purple;
 }
+/*하온수정*/
 .share .sns.on{
-    display: flex;
-    width: 300px;
+    /* display: flex; */ /*호버시에만 나오니까 우선 숨김*/
+    display: none;
+    /* width: 300px; */
     height: 100%;
     background-color: yellow;
+    align-items: center;
 }
-.share .sns .facebook {
+/*하온수정*/
+/* .share .sns .facebook {
     background: url(https://www.ssfshop.com/v3/images/svgs/facebook.svg) left center / 24px auto no-repeat;
 }
 .share .sns .twitter {
@@ -1277,11 +1296,33 @@ footer .etc .etc-right{
 }
 .share .sns .url {
     background: url(https://www.ssfshop.com/v3/images/svgs/copy-url.svg) left center / 24px auto no-repeat;
+} */
+/*하온추가*/
+.haon-facebook , .haon-twitter , .haon-pinterest, .notover>span:first-child{
+    padding: 0px 10px;
+}
+/*하온추가*/
+.haon-facebook , .haon-twitter , .haon-pinterest, .haon-url ,.notover>span{
+    font-size: 25px;
+    color: black;
+}
+.haon-url, .notover>span>:last-child {
+    padding-left: 10px;
+}
+.detail-top-right{
+    display: flex;
+    align-items: center;
+}
+.detail-top-right>span{
+    font-size: 25px;
+    color: black;
+   
 }
 
 
+
 .gods-summary {
-    background-color: gray;
+    /* background-color: rgb(120, 88, 88); */
     display: flex;
     justify-content: space-between;
     margin-bottom: 120px;
@@ -1382,12 +1423,19 @@ footer .etc .etc-right{
     margin-bottom: 12px;
 }
 .tags {
-    display: flex;
+    /* display: flex; */ /*하온수정*/
     flex-wrap: wrap;
     font-size: var(--F12);
     line-height: var(--F12L);
     color: var(--gray900);
+    text-align: left; /*하온수정*/
 }
+.tags > span{ /*하온추가*/
+    border: 1px solid rgb(156, 153, 153);
+    border-radius: 4px;
+    padding: 0 3px;
+}
+
 .gods-summary .godsInfo-area .brand-name {
     margin-bottom: 8px;
     text-overflow: ellipsis;
@@ -1437,7 +1485,7 @@ footer .etc .etc-right{
 .gods-summary .gods-price .sale .discount {
     color: var(--purple500);
 }
-.gods-summary .gods-price .sale em {
+.gods-summary .gods-price .sale span { /*하온수정*/
     display: inline-block;
     margin-right: 2px;
     font-size: var(--F20);
@@ -1448,13 +1496,12 @@ footer .etc .etc-right{
     border-radius: var(--radius);
 }
 .gods-summary .godsInfo-area .review-info {
-    border: 1px solid red;
+    border-bottom: 1px solid var(--gray400); /*하온수정*/
     display: flex;
     gap: 5px;
     justify-content: flex-start;
     align-items: center;
     margin-top: 24px;
-    margin-bottom: 11px;
     padding: 12px 0;
     font-size: var(--F14);
     line-height: var(--F14L);
@@ -1474,8 +1521,14 @@ footer .etc .etc-right{
     margin-right: 2px;
     background: url(https://www.ssfshop.com/v3/images/svgs/star-fill.svg) center / 16px auto no-repeat;
 }
-.gods-summary .review-info>a{
+.gods-summary .review-info>a{/*하온수정*/
     margin: 0;
+    text-decoration: underline;
+    color: #5e5e5e;
+}
+
+.price-info > .btn{ /*하온추가*/
+    font-size: 14px;
 }
 
 
@@ -1540,4 +1593,314 @@ footer .etc .etc-right{
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+}
+
+/*****************하온추가*********************************/
+.goods-info-middle{
+    border-bottom: 1px solid var(--gray400);
+    padding: 20px 0;
+    /* margin-bottom: 20px; */
+    text-align: left;
+}
+
+.goods-info-middle > ul > li {
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.goods-info-middle > ul > li > span:first-child{
+    /* background-color: rgb(158, 216, 182); */
+    width: 100px;
+    display: inline-block;
+    color: #767676;
+}
+.goods-info-middle > ul > li > span:nth-child(3){
+    padding-right: 10px;
+    /* background-color: #00A197; */
+}
+.goods-info-middle > ul > li:last-child >a{
+    /* background-color: red; */
+    text-align: right;
+}
+.goods-info-middle > ul > li > a{
+    /* background-color: red; */
+    color: #767676;
+    text-decoration: underline;
+}
+.goods-info-middle > ul > li:last-child > span:nth-child(2){
+    font-weight: 600;
+}
+.goods-info-middle > ul > li:last-child > a >span {
+    padding-right: 5px;
+}
+.goods-info-middle > ul > li:last-child > a {
+    text-decoration: none;
+}
+.goods-info-middle > ul > li:last-child > span:nth-child(4){
+    display: inline-block;
+    width: 260px;
+}
+.goods-info-middle > ul > li:first-child > span:nth-child(2),
+.goods-info-middle > ul > li:nth-child(2) > span:nth-child(2){
+    /* background-color: red; */
+    padding-right: 7px;
+}
+
+
+.goods-info-bottom{
+    border-bottom: 2px solid rgb(0, 0, 0);
+    padding: 20px 0;
+    font-size: 15px;
+}
+.goods-info-bottom-color, .goods-info-bottom-size{
+    /* border: 1px solid red; */
+    margin-bottom: 11px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.goods-info-bottom-color > span ,.goods-info-bottom-color>ul,
+.goods-info-bottom-size > span ,.goods-info-bottom-size>ul {
+    margin: 0;
+}
+.goods-info-bottom-color > span{
+    display: block;
+    width: 100px;
+    /* border: 1px solid black; */
+    font-weight: 600;
+}
+.goods-info-bottom-size > span{
+    display: block;
+    width: 105px;
+    /* border: 1px solid black; */
+    font-weight: 600;
+}
+.goods-info-bottom-color>ul ,.goods-info-bottom-size>ul{
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.goods-info-bottom-size>ul>li{
+    border: 1px solid rgb(176, 176, 176);
+    border-radius: 3px;
+    padding: 5px 10px;
+    text-align: center;
+    width: 50px; 
+}
+.goods-info-bottom-color>ul>li {
+    border: 1px solid rgb(176, 176, 176);
+    border-radius: 3px;
+    padding: 5px 10px;
+    text-align: center;
+    width: 50px; 
+    margin: 0;
+    border-radius: 7px;
+    width: 50px;
+    height: 70px;
+}
+
+
+
+
+
+.goods-info-count-price{
+    /* border: 1px solid red; */
+    padding: 35px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.goods-info-count{
+    margin: 0;
+    display: flex;
+    align-items: center;
+   
+}
+.goods-info-count>button{
+    display: inline-block;
+    width: 40px;
+    height: 40px;    
+    background-color: white;
+    text-align: center;
+    border: 1px solid gray;
+}
+.goods-info-count>button:nth-child(1){
+    border-radius: 5px 0 0 5px;
+}
+.goods-info-count>button:nth-child(3){
+    border-radius: 0 5px 5px 0;
+}
+
+.goods-info-price{
+    margin: 0;
+}
+.goods-info-price>span:first-child{
+    font-size: 25px;
+    font-weight: 700;
+}
+.goods-info-price>span:last-child{
+    font-weight: 700;
+    font-size: 20px;
+}
+
+
+
+
+.goods-info-btns>button{
+    width: 50%;
+    height: 60px;
+    font-size: 16px;
+}
+.goods-info-btns>button:first-child{
+    background-color: #000;
+    border-radius: 5px 0 0 5px;
+}
+.goods-info-btns>button:last-child{
+    background-color: #7E00FF;
+    border-radius: 0 5px 5px 0;
+}
+.goods-info-btns>button>a{
+    color: white;
+}
+
+
+
+
+.review-info > span , .review-info> a {
+    margin: 0;
+}
+.review-info > span:nth-child(4){
+    /* border: 1px solid red; */
+    padding: 0 10px;
+}
+.review-info > span:nth-child(5){
+    font-weight: 700;
+    color: var(--black);
+}
+
+
+
+/* 슬라이드 */
+.haon-slide-box{
+    border: 1px solid red;
+    margin: auto;
+    width: 100%;  
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.haon-slide-box>div{
+    margin: 0;
+    position: relative;
+    text-align: center;
+    align-items: center;
+}
+.haon-slide-box>div>img{
+    /* width: 507px; */
+    margin: 0;
+}
+.slide-leftBtn{
+    position: absolute;
+    top: 280px;
+    font-size: 40px;
+    color: #ffffff;
+    left: 10px;
+    opacity: 0.5;
+    padding: 10px;
+    z-index: 100;
+}
+.slide-rightBtn{
+    position: absolute;
+    font-size: 40px;
+    right: 65px;
+    top: 280px;
+    color: #ffffff;
+    opacity: 0.5;
+    padding: 10px 5px 10px 10px;
+}
+.slide-stopBtn{
+    position: absolute;
+    font-size: 40px;
+    right: 10px;
+    top: 280px;
+    color: #ffffff;
+    opacity: 0.5;
+    padding: 10px 10px 10px 5px;
+}
+.slide-playBtn {
+    position: absolute;
+    font-size: 40px;
+    right: 10px;
+    top: 280px;
+    color: #ffffff;
+    opacity: 0.5;
+    padding: 10px 10px 10px 5px;
+}
+.slide-leftBtn-hover{
+    position: absolute;
+    top: 280px;
+    font-size: 40px;
+    color: #ffffff;
+    left: 10px;
+    opacity: 0.5;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+    z-index: 100;
+}
+.slide-rightBtn-hover{
+    position: absolute;
+    font-size: 40px;
+    right: 65px;
+    top: 280px;
+    color: #ffffff;
+    opacity: 0.5;
+    padding: 10px 5px 10px 10px;
+    background-color: black;
+    border-radius: 10px 0 0 10px;
+}
+.slide-playBtn-hover, .slide-stopBtn-hover{
+    position: absolute;
+    font-size: 40px;
+    right: 10px;
+    top: 280px;
+    color: #ffffff;
+    opacity: 0.5;
+    padding: 10px 10px 10px 5px;
+    background-color: black;
+    border-radius: 0 10px 10px 0;
+}
+.slide-title{
+    position: absolute;
+    top: 248px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(255, 44, 227);
+    /* width: 507px; */
+    border: 1px solid red;
+
+}
+.slide-desc1{
+    position: absolute;
+    top: 288px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: rgb(255, 31, 161);
+    /* width: 507px; */
+    border: 1px solid red;
+
+
+}
+.slide-desc2{
+    position: absolute;
+    top: 348px;
+    text-align: center;
+    font-size: 16px;
+    color: rgb(255, 16, 183);
+    /* width: 507px; */
+    border: 1px solid red;
+
+
 }
