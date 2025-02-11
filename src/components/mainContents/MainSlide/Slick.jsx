@@ -14,7 +14,7 @@ export default function Slick() {
             .catch((error) => console.log(error));
     }, []);
 
-
+// 얘 css 는 노드모듈. slick-> slick 폴더안에 css 있음
 
 
     const settings = {

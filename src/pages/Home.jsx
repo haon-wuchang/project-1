@@ -4,11 +4,9 @@ import Brand from "../components/mainContents/Brand.jsx";
 import Outer from "../components/mainContents/Outer.jsx";
 import Rank from "../components//mainContents/Rank.jsx";
 import Issue from "../components/mainContents/Issue.jsx";
-// import SlideWrap from "../components/mainContents/MainSlide/SlideWrap.jsx";
 import SubSlideWrap from "../components/mainContents/SubSlide/SubSlideWrap.jsx";
 import HotBrand from "../components/mainContents/HotBrands/HotBrand.jsx";
-import SlideWrap2 from "../components/mainContents/MainSlide/SlideWrap2.jsx";
-import SlideWrap3 from "../components/mainContents/MainSlide/Slick.jsx";
+import Slick from "../components/mainContents/MainSlide/Slick.jsx";
 
 export default function Home(){
 
@@ -59,8 +57,7 @@ export default function Home(){
       
     return (
 <main id='content'>  
-  {/* <SlideWrap2/> 슬라이드 */}
-  <SlideWrap3/>
+  <Slick/>
   {/* 컨텐츠 시작 */}
   <div className='contents content-wrap'>
   <div className="corner-section">

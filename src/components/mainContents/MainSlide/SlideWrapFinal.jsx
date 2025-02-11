@@ -12,18 +12,17 @@ export default function SlideWrapFinal({item}) {
     const [isPlay , setIsPlay] = useState(true); // 슬라이드 재생,멈춤 관리
     const [page, setPage] = useState(1);
     const length = data.length;  // 이미지 전체 갯수       
+    const [isHover, setIsHover] = useState(false);
 
     useEffect(() => {
         axios.get('/data/slide.json')
             .then((res) => {setData(res.data)})
             .catch((error) => console.log(error));
     }, []);
-    const [isHover, setIsHover] = useState(false);
 
     const nextSlide = () => {
         // setCurrent(current === length - 1 ? 0 : current + 1);
-        setPage(page + 1 > length  ? 1 : page + 1);
-        
+        setPage(page + 1 > length  ? 1 : page + 1);        
       };
     
       const prevSlide = () => {
