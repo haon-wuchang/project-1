@@ -42,7 +42,7 @@ export default function SlideWrap2() {
         }
       }, 3000);
 
-    const nextSlide = (e) => {
+    const nextSlide = () => {
         // setCurrent(current === length - 1 ? 0 : current + 1);
         setPage(page + 1 > length  ? 1 : page + 1);
         
@@ -68,8 +68,11 @@ export default function SlideWrap2() {
     const handleLeave = () => {
         setIsHover(false);
     }
-    
 
+// console.log('page',page); 
+// 페이지는 잘 찍히는데 왜 css 는 안먹지..
+
+// page 가 바뀔때마다 slide-active css 가 적용되야한다
     return (
         <>
         <div className='slide-box'
@@ -78,8 +81,8 @@ export default function SlideWrap2() {
                 className= {isHover === true ? 'slide-leftBtn-hover': 'slide-leftBtn'} />
             {sliceData&&sliceData.map((item,index)=> 
             <>
-                <div className='slide-active'>
-                {index === current && <img src={item.item1}/>}
+                <div className={page===page ?'slide-active':'nope'}>
+                <img src={item.item1}/>
                     <div className={item.item1Br[2]==='' ? 
                             (item.item1Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
@@ -91,8 +94,8 @@ export default function SlideWrap2() {
                             {item.item1Msg[2]}<br/>{item.item1Br[4]}</p>
                     </div>
                 </div>             
-                <div className='slide-active' >
-                {index === current && <img src={item.item2}/>}
+                <div className={page===page ?'slide-active':'nope'}>
+                <img src={item.item2}/>
                     <div className={item.item2Br[2]==='' ? 
                             (item.item2Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
@@ -104,8 +107,8 @@ export default function SlideWrap2() {
                             {item.item2Msg[2]}<br/>{item.item2Br[4]}</p>
                     </div>
                 </div>             
-                <div className='slide-active'>
-                {index === current && <img src={item.item3}/>}
+                <div className={page===page ?'slide-active':'nope'}>
+                <img src={item.item3}/>
                     <div className={item.item3Br[2]==='' ? 
                             (item.item3Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
@@ -119,7 +122,7 @@ export default function SlideWrap2() {
                 </div>     
             </>        
             )}
-            <SlArrowRight   onClick={(e)=>{nextSlide(e)}}
+            <SlArrowRight   onClick={nextSlide}
                  className= {isHover === true ? 'slide-rightBtn-hover': 'slide-rightBtn'}  />    
             {isPlay === true ? 
                 (<BsPause onClick={handleStop}

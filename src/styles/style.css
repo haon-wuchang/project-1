@@ -1783,22 +1783,19 @@ footer .etc .etc-right{
 /* 슬라이드 */
 .slide-active {
     border: 3px solid blue;
-    animation-name: test;
-    animation-duration: 2s;
+/* 
+
     /* transition-property: width;
     transition-duration: 3s;
     transition-delay: 0;
     transition-timing-function: ease; */
 }
 
+트렌지션 찾아서 해봐 애니메이션은 뭔가 안되는거같음
 
-/* from-to */
-@keyframes test {
-    from {border: 5px solid red;}
-    to {border: 5px solid green;}
-  }
-
-
+.nope {
+    opacity: 0.1;
+}
 
 .slide-box{
     /* border: 1px solid red; */
