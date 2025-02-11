@@ -58,7 +58,7 @@ export default function SlideWrap2() {
         setIsPlay(false);
     }
 
-    // 슬라이드 컨테이너 호버 시 버튼 백그라운드css 생성됨
+    // 슬라이드 박스 호버 시 버튼 백그라운드css 생성됨
     const [isHover, setIsHover] = useState(false);
 
     const handleEnter = () => {
