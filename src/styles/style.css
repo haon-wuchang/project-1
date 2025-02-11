@@ -1783,19 +1783,46 @@ footer .etc .etc-right{
 /* 슬라이드 */
 .slide-active {
     border: 3px solid blue;
-/* 
 
-    /* transition-property: width;
-    transition-duration: 3s;
-    transition-delay: 0;
-    transition-timing-function: ease; */
+ /* transition 은 호버했을때만 적용되는거임 호버나 다른 상호작용이 잇을때만 */
+ position: absolute;
+ animation-name: haon;
+ animation-duration: 2s;
+ animation-delay: 0;
+ animation-iteration-count: 1;
+ /* animation-play-state: running; */
+ /* animation-fill-mode: backwards; */
 }
 
-트렌지션 찾아서 해봐 애니메이션은 뭔가 안되는거같음
+
 
 .nope {
-    opacity: 0.1;
+    /* opacity: 0.1; */
+    position: absolute;
+    animation-name: haon;
+    animation-duration: 2s;
+    animation-delay: 0;
+    animation-iteration-count: 1;
+
 }
+
+@keyframes haon {
+    0% {
+      transform: translateX(300%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+  }
+  
+@keyframes haon2 {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+  }
 
 .slide-box{
     /* border: 1px solid red; */
@@ -1956,3 +1983,9 @@ footer .etc .etc-right{
     font-weight: 500;
     padding-bottom: 20px;
 }
+
+
+
+
+
+

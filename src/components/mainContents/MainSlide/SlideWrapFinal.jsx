@@ -6,41 +6,19 @@ import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 import useInterval from './useInterval.jsx';
 
-// 슬라이드 넘어가는css  작업 해야함;;
-// json 에 
-// "item1,2,3Br":[
-//     "1br-2","1br-2","2br-1","2br-2","3br-1","3br-2"
-//  ]  
 
-export default function SlideWrap2() {
+export default function SlideWrapFinal({item}) {
     const [data,setData] = useState([]);  //  데이터 관리값
     const [isPlay , setIsPlay] = useState(true); // 슬라이드 재생,멈춤 관리
-    const [current, setCurrent] = useState(0);  // 데이터의 index 값 
+    const [page, setPage] = useState(1);
     const length = data.length;  // 이미지 전체 갯수       
-
 
     useEffect(() => {
         axios.get('/data/slide.json')
             .then((res) => {setData(res.data)})
             .catch((error) => console.log(error));
     }, []);
-
-    const [page, setPage] = useState(1);
-    const itemsPerPage = 1;
-    const endIdx = (page * itemsPerPage); 
-    const startIdx = endIdx - itemsPerPage;
-    const [sliceData, setSliceData] = useState([]); 
-    useEffect(() => {
-        setSliceData(data.slice(startIdx, endIdx));
-    }, [page, data]);
-
-    useInterval(() => {  
-        if(isPlay === true){
-            nextSlide();
-        }else{
-            handleStop();
-        }
-      }, 3000);
+    const [isHover, setIsHover] = useState(false);
 
     const nextSlide = () => {
         // setCurrent(current === length - 1 ? 0 : current + 1);
@@ -58,30 +36,18 @@ export default function SlideWrap2() {
     const handleStop = () => {
         setIsPlay(false);
     }
-
-    // 슬라이드 박스 호버 시 버튼 백그라운드css 생성됨
-    const [isHover, setIsHover] = useState(false);
-
     const handleEnter = () => {
         setIsHover(true);
     }
     const handleLeave = () => {
         setIsHover(false);
     }
-
-console.log('page',page); 
-// 페이지는 잘 찍히는데 왜 css 는 안먹지..
-
-// page 가 바뀔때마다 slide-active css 가 적용되야한다
     return (
         <>
-        <div className='slide-box'
-        onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-            <SlArrowLeft onClick={prevSlide}
-                className= {isHover === true ? 'slide-leftBtn-hover': 'slide-leftBtn'} />
-            {sliceData&&sliceData.map((item,index)=> 
-            <>
-                <div className={page===page ?'slide-active':'nope'}>
+        <div className='slide-box'  onMouseEnter={handleEnter} onMouseLeave={handleLeave} >
+              <SlArrowLeft onClick={prevSlide}
+                            className= {isHover === true ? 'slide-leftBtn-hover': 'slide-leftBtn'} />
+                <div >
                 <img src={item.item1}/>
                     <div className={item.item1Br[2]==='' ? 
                             (item.item1Br[4] === ''?'top-up':'top-middle')
@@ -94,7 +60,7 @@ console.log('page',page);
                             {item.item1Msg[2]}<br/>{item.item1Br[4]}</p>
                     </div>
                 </div>             
-                <div className={page===page ?'slide-active':'nope'}>
+                <div>
                 <img src={item.item2}/>
                     <div className={item.item2Br[2]==='' ? 
                             (item.item2Br[4] === ''?'top-up':'top-middle')
@@ -107,7 +73,7 @@ console.log('page',page);
                             {item.item2Msg[2]}<br/>{item.item2Br[4]}</p>
                     </div>
                 </div>             
-                <div className={page===page ?'slide-active':'nope'}>
+                <div>
                 <img src={item.item3}/>
                     <div className={item.item3Br[2]==='' ? 
                             (item.item3Br[4] === ''?'top-up':'top-middle')
@@ -120,16 +86,14 @@ console.log('page',page);
                             {item.item3Msg[2]}<br/>{item.item3Br[4]}</p>
                     </div>
                 </div>     
-            </>        
-            )}
-            <SlArrowRight   onClick={nextSlide}
-                 className= {isHover === true ? 'slide-rightBtn-hover': 'slide-rightBtn'}  />    
-            {isPlay === true ? 
-                (<BsPause onClick={handleStop}
-                    className= {isHover === true ? 'slide-playBtn-hover': 'slide-playBtn'}/>):
-                (<CiPlay1 onClick={handlePlay}
-                    className= {isHover === true ? 'slide-stopBtn-hover': 'slide-stopBtn'}/> )                                 
-            }      
+                 <SlArrowRight   onClick={nextSlide}
+                    className= {isHover === true ? 'slide-rightBtn-hover': 'slide-rightBtn'}  />    
+                {isPlay === true ? 
+                    (<BsPause onClick={handleStop}
+                        className= {isHover === true ? 'slide-playBtn-hover': 'slide-playBtn'}/>):
+                    (<CiPlay1 onClick={handlePlay}
+                        className= {isHover === true ? 'slide-stopBtn-hover': 'slide-stopBtn'}/> )                                 
+                }           
         </div>
         </>
     );
