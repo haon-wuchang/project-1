@@ -1781,16 +1781,24 @@ footer .etc .etc-right{
 
 
 /* 슬라이드 */
-.slide {
-    display: flex;
-    transition: transform 0.5s ease;
-    &.active {
-      transform: translateX(0);
-    }
-    &:not(.active) {
-      transform: translateX(100%);
-    }
+.slide-active {
+    border: 3px solid blue;
+    animation-name: test;
+    animation-duration: 2s;
+    /* transition-property: width;
+    transition-duration: 3s;
+    transition-delay: 0;
+    transition-timing-function: ease; */
 }
+
+
+/* from-to */
+@keyframes test {
+    from {border: 5px solid red;}
+    to {border: 5px solid green;}
+  }
+
+
 
 .slide-box{
     /* border: 1px solid red; */
@@ -1802,7 +1810,7 @@ footer .etc .etc-right{
 }
 .slide-box>div{
     margin: 0;
-    /* position: relative; */
+    position: relative;
     text-align: center;
     align-items: center;
     width: 100%;

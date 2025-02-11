@@ -6,11 +6,7 @@ import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 import useInterval from './useInterval.jsx';
 
-// 슬라이드 넘어가는css  작업 해야함;;
-// json 에 
-// "item1,2,3Br":[
-//     "1br-2","1br-2","2br-1","2br-2","3br-1","3br-2"
-//  ]  
+// 원본
 
 export default function SlideWrap2() {
     const [data,setData] = useState([]);  //  데이터 관리값
@@ -40,16 +36,15 @@ export default function SlideWrap2() {
         }else{
             handleStop();
         }
-      }, 3000);
+      }, 5000);
 
-    const nextSlide = (e) => {
-        // setCurrent(current === length - 1 ? 0 : current + 1);
+    const nextSlide = () => {
+        setCurrent(current === length - 1 ? 0 : current + 1);
         setPage(page + 1 > length  ? 1 : page + 1);
-        
       };
     
       const prevSlide = () => {
-        // setCurrent(current === 0 ? length - 1 : current - 1);
+        setCurrent(current === 0 ? length - 1 : current - 1);
         setPage(page > 1 ? page-1  : length-1);
       };
       const handlePlay = () => {
@@ -78,48 +73,50 @@ export default function SlideWrap2() {
                 className= {isHover === true ? 'slide-leftBtn-hover': 'slide-leftBtn'} />
             {sliceData&&sliceData.map((item,index)=> 
             <>
-                <div className='slide-active'>
-                {index === current && <img src={item.item1}/>}
+                <div className={index === current ? 'slide active' : 'slide'}>
+                        {index === current && <img src={item.item1}/>}
                     <div className={item.item1Br[2]==='' ? 
                             (item.item1Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
-                        <p className='slide-title'>
-                            {item.item1Msg[0]}<br/>{item.item1Br[0]}</p>                    
-                        <p className='slide-desc1'>                            
-                            {item.item1Msg[1]}<br/>{item.item1Br[2]}</p>
-                        <p className='slide-desc2'>
-                            {item.item1Msg[2]}<br/>{item.item1Br[4]}</p>
+                        {index === current && <p className='slide-title'>
+                            {item.item1Msg[0]}<br/>{item.item1Br[0]}</p>}                    
+                        {index === current && <p 
+                            className='slide-desc1'>
+                            {item.item1Msg[1]}<br/>{item.item1Br[2]}</p>}
+                        {index === current && <p className='slide-desc2'>
+                            {item.item1Msg[2]}<br/>{item.item1Br[4]}</p>}
                     </div>
+                    {/* index===current 이거 비교값을 지우면 이미지 안넘어가는데? */}
                 </div>             
-                <div className='slide-active' >
-                {index === current && <img src={item.item2}/>}
+                <div className={index === current ? 'slide active' : 'slide' } >
+                    {index === current && <img src={item.item2}/>}
                     <div className={item.item2Br[2]==='' ? 
                             (item.item2Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
-                        <p className='slide-title'>
-                            {item.item2Msg[0]}<br/>{item.item2Br[0]}</p>
-                        <p className='slide-desc1'>
-                            {item.item2Msg[1]}<br/>{item.item2Br[2]}</p>
-                        <p className='slide-desc2'>
-                            {item.item2Msg[2]}<br/>{item.item2Br[4]}</p>
+                        {index === current && <p className='slide-title'>
+                            {item.item2Msg[0]}<br/>{item.item2Br[0]}</p>}
+                        {index === current && <p className='slide-desc1'>
+                            {item.item2Msg[1]}<br/>{item.item2Br[2]}</p>}
+                        {index === current && <p className='slide-desc2'>
+                            {item.item2Msg[2]}<br/>{item.item2Br[4]}</p>}
                     </div>
                 </div>             
-                <div className='slide-active'>
-                {index === current && <img src={item.item3}/>}
+                <div className={index === current ? 'slide active' : 'slide'} >
+                    {index === current && <img src={item.item3}/>}
                     <div className={item.item3Br[2]==='' ? 
                             (item.item3Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
-                       <p className='slide-title'>
-                            {item.item3Msg[0]}<br/>{item.item3Br[0]}</p>
-                        <p className='slide-desc1'>
-                            {item.item3Msg[1]}<br/>{item.item3Br[2]}</p>
-                        <p className='slide-desc2'>
-                            {item.item3Msg[2]}<br/>{item.item3Br[4]}</p>
+                        {index === current && <p className='slide-title'>
+                            {item.item3Msg[0]}<br/>{item.item3Br[0]}</p>}
+                        {index === current && <p className='slide-desc1'>
+                            {item.item3Msg[1]}<br/>{item.item3Br[2]}</p>}
+                        {index === current && <p className='slide-desc2'>
+                            {item.item3Msg[2]}<br/>{item.item3Br[4]}</p>}
                     </div>
                 </div>     
             </>        
             )}
-            <SlArrowRight   onClick={(e)=>{nextSlide(e)}}
+            <SlArrowRight   onClick={nextSlide}
                  className= {isHover === true ? 'slide-rightBtn-hover': 'slide-rightBtn'}  />    
             {isPlay === true ? 
                 (<BsPause onClick={handleStop}
