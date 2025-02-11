@@ -25,6 +25,15 @@ export default function SlideWrap2() {
             .catch((error) => console.log(error));
     }, []);
 
+    const [page, setPage] = useState(1);
+    const itemsPerPage = 1;
+    const endIdx = (page * itemsPerPage); 
+    const startIdx = endIdx - itemsPerPage;
+    const [sliceData, setSliceData] = useState([]); 
+    useEffect(() => {
+        setSliceData(data.slice(startIdx, endIdx));
+    }, [page, data]);
+
     useInterval(() => {  
         if(isPlay === true){
             nextSlide();
@@ -34,11 +43,13 @@ export default function SlideWrap2() {
       }, 1000);
 
     const nextSlide = () => {
-        setCurrent(current === length - 1 ? 0 : current + 1);
+        // setCurrent(current === length - 1 ? 0 : current + 1);
+        setPage(page + 1 > length  ? 1 : page + 1);
       };
     
       const prevSlide = () => {
-        setCurrent(current === 0 ? length - 1 : current - 1);
+        // setCurrent(current === 0 ? length - 1 : current - 1);
+        setPage(page > 1 ? page-1  : length-1);
       };
       const handlePlay = () => {
         setIsPlay(true);
@@ -60,17 +71,17 @@ export default function SlideWrap2() {
 
     return (
         <>
-        <div className='haon-slide-box'
+        <div className='slide-box'
         onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
             <SlArrowLeft onClick={prevSlide}
                 className= {isHover === true ? 'slide-leftBtn-hover': 'slide-leftBtn'} />
-            {data.map((item,index)=> 
+            {sliceData&&sliceData.map((item,index)=> 
             <>
                 <div className={index === current ? 'slide active' : 'slide'}>
                         {index === current && <img src={item.item1}/>}
                     <div className={item.item1Br[2]==='' ? 
                             (item.item1Br[4] === ''?'top-up':'top-middle')
-                            :'haon-test'}>
+                            :'original'}>
                         {index === current && <p className='slide-title'>
                             {item.item1Msg[0]}<br/>{item.item1Br[0]}</p>}                    
                         {index === current && <p 
@@ -85,7 +96,7 @@ export default function SlideWrap2() {
                     {index === current && <img src={item.item2}/>}
                     <div className={item.item2Br[2]==='' ? 
                             (item.item2Br[4] === ''?'top-up':'top-middle')
-                            :'haon-test'}>
+                            :'original'}>
                         {index === current && <p className='slide-title'>
                             {item.item2Msg[0]}<br/>{item.item2Br[0]}</p>}
                         {index === current && <p className='slide-desc1'>
@@ -98,7 +109,7 @@ export default function SlideWrap2() {
                     {index === current && <img src={item.item3}/>}
                     <div className={item.item3Br[2]==='' ? 
                             (item.item3Br[4] === ''?'top-up':'top-middle')
-                            :'haon-test'}>
+                            :'original'}>
                         {index === current && <p className='slide-title'>
                             {item.item3Msg[0]}<br/>{item.item3Br[0]}</p>}
                         {index === current && <p className='slide-desc1'>
@@ -112,9 +123,9 @@ export default function SlideWrap2() {
             <SlArrowRight   onClick={nextSlide}
                  className= {isHover === true ? 'slide-rightBtn-hover': 'slide-rightBtn'}  />    
             {isPlay === true ? 
-                (<CiPlay1 onClick={handleStop}
+                (<BsPause onClick={handleStop}
                     className= {isHover === true ? 'slide-playBtn-hover': 'slide-playBtn'}/>):
-                (<BsPause onClick={handlePlay}
+                (<CiPlay1 onClick={handlePlay}
                     className= {isHover === true ? 'slide-stopBtn-hover': 'slide-stopBtn'}/> )                                 
             }      
         </div>
