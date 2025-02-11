@@ -1919,3 +1919,23 @@ footer .etc .etc-right{
     position: absolute;
     width: 100%;
 }
+
+/* 회원가입- 하온//////////////////////// */
+.signupBox{
+    margin: 0 auto;
+    width: 1440px;
+    border: 2px solid blue;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 60px;
+}
+.signup-wrap{
+    width: 540px;
+    margin: auto;
+    border: 1px solid red;
+}
+.signup-wrap>h1{
+    font-size: 35px;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
