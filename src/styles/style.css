@@ -1981,27 +1981,82 @@ footer .etc .etc-right{
 .signupBox{
     margin: 0 auto;
     width: 1440px;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     text-align: center;
     padding-top: 30px;
     padding-bottom: 60px;
 }
 .signup-wrap{
-    width: 540px;
+    width: 480px;
     margin: auto;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 .signup-wrap>h1{
     font-size: 35px;
     font-weight: 500;
     padding-bottom: 20px;
 }
-
-
-
-.slide-box-test{
+.signup-wrap >form > ul{
+    text-align: left;
+}
+.signup-wrap >form> ul >li {
+    padding: 10px 0;
+}
+.signup-top >label {
+    display: block;
+    padding-bottom: 3px;
+}
+.signup-top:last-child >label{
+    font-weight: 700;
+}
+.signup-top > input {
     width: 100%;
-    display: flex;
-    overflow: hidden;
+    height: 30px;
+}
+.signup-top >textarea{
+    width: 100%;
+}
+.signup-wrap  >form> button {
+    width: 100%;
+    padding: 20px 0;
+    background-color: var(--purple500);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+.signup-bottom {
+    text-align: left;
+    padding: 10px 0;
+}
+.signup-bottom > table {
+    text-align: center;
+    font-size: 14px;
+}
+.signup-bottom  > table > tr {
+    border: 1px solid black;
+}
+.signup-bottom  > table > tr>th{
+    padding: 10px 0;
+}
+.signup-bottom  > table > tr> td {
+    padding: 5px 0;
+}
+.signup-bottom  > p {
+    font-size: 14px;
+}
+.signup-bottom > label {
+    padding-bottom: 3px;
+    display: block;
+    font-weight: 700;
 }
 
+.signup-top:nth-child(6) > input {
+    width: 290px;
+}
+.signup-top:nth-child(6) > span{
+    padding: 0 10px;
+}
+.signup-top:nth-child(6) > select {
+    width: 150px;
+    height: 30px;
+}
