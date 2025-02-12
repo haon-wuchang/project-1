@@ -5,6 +5,7 @@ import { BsPause } from "react-icons/bs";
 import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 import useInterval from './useInterval.jsx';
+import $ from "jquery";
 
 
 export default function SlideWrapFinal({item}) {
@@ -41,6 +42,8 @@ export default function SlideWrapFinal({item}) {
     const handleLeave = () => {
         setIsHover(false);
     }
+
+
     return (
         <>
         <div className='slide-box'  onMouseEnter={handleEnter} onMouseLeave={handleLeave} >
@@ -92,8 +95,9 @@ export default function SlideWrapFinal({item}) {
                         className= {isHover === true ? 'slide-playBtn-hover': 'slide-playBtn'}/>):
                     (<CiPlay1 onClick={handlePlay}
                         className= {isHover === true ? 'slide-stopBtn-hover': 'slide-stopBtn'}/> )                                 
-                }           
+                }   
         </div>
+
         </>
     );
 }

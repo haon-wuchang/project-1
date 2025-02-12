@@ -1812,7 +1812,10 @@ footer .etc .etc-right{
       transform: translateX(100%);
     }
 }
-
+.aa {
+    border: 1px solid red;
+    z-index: 100;
+}
 
 /* translatex = 0 이면 그냥 화면 중간임 여기서 -이면 중간기준 왼쪽으로 가고 
 + 이면 중간기준 오른쪽으로감 */

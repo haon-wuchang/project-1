@@ -29,6 +29,7 @@ export default function Slick() {
         // centerMode: true, // 현재 슬라이드를 가운데에 정렬
         // centerPadding: '100px', // 가장자리 슬라이드 사이의 간격
         // className: 'center' // Slider 클래스설정
+        pauseOnFocus:false
       };
       
       return (
