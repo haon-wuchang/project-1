@@ -7,6 +7,7 @@ import Issue from "../components/mainContents/Issue.jsx";
 import SubSlideWrap from "../components/mainContents/SubSlide/SubSlideWrap.jsx";
 import HotBrand from "../components/mainContents/HotBrands/HotBrand.jsx";
 import Slick from "../components/mainContents/MainSlide/Slick.jsx";
+import SlideWrap3 from '../components/mainContents/MainSlide/SlideWrap3.jsx';
 
 export default function Home(){
 
@@ -58,6 +59,7 @@ export default function Home(){
     return (
 <main id='content'>  
   <Slick/>
+  {/* <SlideWrap3 /> */}
   {/* 컨텐츠 시작 */}
   <div className='contents content-wrap'>
   <div className="corner-section">

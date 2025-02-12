@@ -88,7 +88,7 @@ export default function SlideWrapFinal({item}) {
                  <SlArrowRight   onClick={nextSlide}
                     className= {isHover === true ? 'slide-rightBtn-hover': 'slide-rightBtn'}  />    
                 {isPlay === true ? 
-                    (<BsPause onClick={handleStop}
+                    (<BsPause onClick={handleStop} 
                         className= {isHover === true ? 'slide-playBtn-hover': 'slide-playBtn'}/>):
                     (<CiPlay1 onClick={handlePlay}
                         className= {isHover === true ? 'slide-stopBtn-hover': 'slide-stopBtn'}/> )                                 

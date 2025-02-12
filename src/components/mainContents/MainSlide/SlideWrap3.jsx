@@ -21,31 +21,13 @@ export default function SlideWrap2() {
             .catch((error) => console.log(error));
     }, []);
 
-    const [page, setPage] = useState(1);
-    const itemsPerPage = 1;
-    const endIdx = (page * itemsPerPage); 
-    const startIdx = endIdx - itemsPerPage;
-    const [sliceData, setSliceData] = useState([]); 
-    useEffect(() => {
-        setSliceData(data.slice(startIdx, endIdx));
-    }, [page, data]);
-
-    useInterval(() => {  
-        if(isPlay === true){
-            nextSlide();
-        }else{
-            handleStop();
-        }
-      }, 5000);
 
     const nextSlide = () => {
         setCurrent(current === length - 1 ? 0 : current + 1);
-        setPage(page + 1 > length  ? 1 : page + 1);
       };
     
       const prevSlide = () => {
         setCurrent(current === 0 ? length - 1 : current - 1);
-        setPage(page > 1 ? page-1  : length-1);
       };
       const handlePlay = () => {
         setIsPlay(true);
@@ -63,19 +45,39 @@ export default function SlideWrap2() {
     const handleLeave = () => {
         setIsHover(false);
     }
-    
 
+    // useInterval(() => {  
+    //     if(isPlay === true){
+    //         nextSlide();
+    //     }else{
+    //         handleStop();
+    //     }
+    //   }, 5000);
+
+
+      useEffect(() => {
+        const interval = setInterval(() => {
+            if(isPlay === true){
+                nextSlide();
+            }else{
+                handleStop();
+            }
+        }, 3000); 
+    
+        return () => clearInterval(interval); // 
+      }, [current, length,isPlay]);
+      
     return (
         <>
-        <div className='slide-box'
+        <div className='slide-box-test'
         onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
             <SlArrowLeft onClick={prevSlide}
                 className= {isHover === true ? 'slide-leftBtn-hover': 'slide-leftBtn'} />
-            {sliceData&&sliceData.map((item,index)=> 
+            {data&&data.map((item,index)=> 
             <>
                 <div className={index === current ? 'slide active' : 'slide'}>
                         {index === current && <img src={item.item1}/>}
-                    <div className={item.item1Br[2]==='' ? 
+                    {index === current && <div className={item.item1Br[2]==='' ? 
                             (item.item1Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
                         {index === current && <p className='slide-title'>
@@ -85,12 +87,11 @@ export default function SlideWrap2() {
                             {item.item1Msg[1]}<br/>{item.item1Br[2]}</p>}
                         {index === current && <p className='slide-desc2'>
                             {item.item1Msg[2]}<br/>{item.item1Br[4]}</p>}
-                    </div>
-                    {/* index===current 이거 비교값을 지우면 이미지 안넘어가는데? */}
+                    </div>}
                 </div>             
                 <div className={index === current ? 'slide active' : 'slide' } >
                     {index === current && <img src={item.item2}/>}
-                    <div className={item.item2Br[2]==='' ? 
+                    {index === current && <div className={item.item2Br[2]==='' ? 
                             (item.item2Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
                         {index === current && <p className='slide-title'>
@@ -99,11 +100,11 @@ export default function SlideWrap2() {
                             {item.item2Msg[1]}<br/>{item.item2Br[2]}</p>}
                         {index === current && <p className='slide-desc2'>
                             {item.item2Msg[2]}<br/>{item.item2Br[4]}</p>}
-                    </div>
+                    </div>}
                 </div>             
                 <div className={index === current ? 'slide active' : 'slide'} >
                     {index === current && <img src={item.item3}/>}
-                    <div className={item.item3Br[2]==='' ? 
+                    {index === current && <div className={item.item3Br[2]==='' ? 
                             (item.item3Br[4] === ''?'top-up':'top-middle')
                             :'original'}>
                         {index === current && <p className='slide-title'>
@@ -112,7 +113,7 @@ export default function SlideWrap2() {
                             {item.item3Msg[1]}<br/>{item.item3Br[2]}</p>}
                         {index === current && <p className='slide-desc2'>
                             {item.item3Msg[2]}<br/>{item.item3Br[4]}</p>}
-                    </div>
+                    </div>}
                 </div>     
             </>        
             )}
@@ -125,7 +126,14 @@ export default function SlideWrap2() {
                     className= {isHover === true ? 'slide-stopBtn-hover': 'slide-stopBtn'}/> )                                 
             }      
         </div>
+        <div className='trans-1 trans'>
+            translate x -
+        </div>
+        <div className='trans-2'>
+            translate x -
+        </div>
         </>
+
     );
 }
 

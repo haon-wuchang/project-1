@@ -1781,60 +1781,70 @@ footer .etc .etc-right{
 
 
 /* 슬라이드 */
-.slide-active {
-    border: 3px solid blue;
-
- /* transition 은 호버했을때만 적용되는거임 호버나 다른 상호작용이 잇을때만 */
- position: absolute;
- animation-name: haon;
- animation-duration: 2s;
- animation-delay: 0;
- animation-iteration-count: 1;
- /* animation-play-state: running; */
- /* animation-fill-mode: backwards; */
-}
-
-
-
-.nope {
-    /* opacity: 0.1; */
-    position: absolute;
-    animation-name: haon;
-    animation-duration: 2s;
-    animation-delay: 0;
-    animation-iteration-count: 1;
-
-}
-
-@keyframes haon {
-    0% {
-      transform: translateX(300%);
-    }
-    100% {
-        transform: translateX(0%);
-    }
-  }
-  
-@keyframes haon2 {
+/* @keyframes slider {
     0% {
       transform: translateX(0);
     }
-    100% {
-        transform: translateX(0);
+  
+    26% {
+      transform: translateX(0);
     }
-  }
+    33% {
+      transform: translateX(-100%);
+      animation-timing-function: step-end;
+    }
+    93% {
+      transform: translateX(100%);
+    }
+  
+    100% {
+      transform: translateX(0);
+    }
+  } */
+
+  .slide {
+    display: flex;
+    transition: transform 0.5s ease;    
+    &.active {
+      transform: translateX(0);
+    }
+    &:not(.active) {
+      transform: translateX(100%);
+    }
+}
+
+
+/* translatex = 0 이면 그냥 화면 중간임 여기서 -이면 중간기준 왼쪽으로 가고 
++ 이면 중간기준 오른쪽으로감 */
+
+.trans-1{
+    border: 1px solid red;
+    width: 100px;
+    transform: translateX(0);
+
+}
+
+.trans-2{
+    border: 1px solid blue;
+    width: 100px;
+    transform: translateX(100px);
+
+}
+
+
 
 .slide-box{
     /* border: 1px solid red; */
     margin: auto;
     width: 100%;  
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     position: relative;
+    overflow: hidden;
 }
 .slide-box>div{
     margin: 0;
-    position: relative;
+    /* position: relative; */
     text-align: center;
     align-items: center;
     width: 100%;
@@ -1986,6 +1996,9 @@ footer .etc .etc-right{
 
 
 
-
-
+.slide-box-test{
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
 
