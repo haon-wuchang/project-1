@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 export default function Signup(){
     // const navigate = useNavigate();
 
+// 빈값일때 에러메세지 뜨게 작업 1.
+// 화면 지저분하니까 따로 파일에 refs 나 애들 저장해놓고 불러서 쓰기 2.
+// 회원가입버튼누르면 서버로 formData 전송 3.
+
     const formData = {
         'id':'', 
         'password':'',
