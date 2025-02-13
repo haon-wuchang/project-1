@@ -2011,10 +2011,13 @@ footer .etc .etc-right{
 }
 .signup-top > input {
     width: 100%;
-    height: 30px;
+    height: 35px;
 }
-.signup-top >textarea{
+.textarea{
     width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+    border: 1px solid black;
 }
 .signup-wrap  >form> button {
     width: 100%;
@@ -2050,13 +2053,20 @@ footer .etc .etc-right{
     font-weight: 700;
 }
 
-.signup-top:nth-child(6) > input {
+.signup-top:nth-child(7) > input {
     width: 290px;
 }
-.signup-top:nth-child(6) > span{
+.emailEmt{
     padding: 0 10px;
 }
-.signup-top:nth-child(6) > select {
+.signup-top:nth-child(7) > select {
     width: 150px;
-    height: 30px;
+    height: 38px;
+}
+.signup-err{
+    /* color: white; */
+    text-align: left;
+    padding: 0;
+    display: none;
+    font-size: 14px;
 }
