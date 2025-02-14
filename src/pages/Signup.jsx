@@ -4,8 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function Signup(){
     // const navigate = useNavigate();
+    //체크박스 상태 관리
+    const [isChecked1, setIsChecked1] = useState(false);
+    const [isChecked2, setIsChecked2] = useState(false);
+    const handleChecked1 = (e) => {setIsChecked1(e.target.checked);}
+    const handleChecked2 = (e) => {setIsChecked2(e.target.checked);}
 
-// 빈값일때 에러메세지 뜨게 작업 1.
+
+// 비밀번호 일치여부, 아이디 중복체크 진행 1.
+// 아이디 중복체크는 db에서 현재있는 회원들 아이디 정보가져와서 비교해야함;; 흑
 // 화면 지저분하니까 따로 파일에 refs 나 애들 저장해놓고 불러서 쓰기 2.
 // 회원가입버튼누르면 서버로 formData 전송 3.
 
@@ -34,38 +41,54 @@ export default function Signup(){
     
     
         const errorMsg = {
-            'idErrMsg':'아이디를 입력해주세요',
-            'pwdErrMsg':'비밀번호를 입력해주세요',
-            'cpwdErrMsg':'비밀번호 확인을 입력해주세요',
-            'usernameErrMsg':'이름을 입력해주세요',
-            'phoneErrMsg':'전화번호를 입력해주세요',
-            'emailErrMsg':'이메일을 입력해주세요',
-            'addressErrMsg':'주소를 입력해주세요',
-            'emailDomainErrMsg':'이메일주소를 선택해주세요'
+            'idErrMsg':useRef(null),
+            'pwdErrMsg':useRef(null),
+            'cpwdErrMsg':useRef(null),
+            'usernameErrMsg':useRef(null),
+            'phoneErrMsg':useRef(null),
+            'emailErrMsg':useRef(null),
+            'addressErrMsg':useRef(null),
         };
 
     const signupValidate = () => {
         if(refs.idRef.current.value === ''){
-            alert('아이디를 입력해주세요');
+            errorMsg.idErrMsg.current.style.setProperty('color','red');
             refs.idRef.current.focus();
+        }else if(refs.idRef.current.value.length < 6){
+            alert('6자 이상 아이디를 입력해주세요');
+            refs.idRef.current.value = '';
+            refs.idRef.current.focus();        
         }else  if(refs.pwdRef.current.value === ''){
-            alert('비밀번호를 입력해주세요');
+            errorMsg.pwdErrMsg.current.style.setProperty('color','red');
             refs.pwdRef.current.focus();
         }else  if(refs.cpwdRef.current.value === ''){
-            alert('비밀번호 확인을 입력해주세요');
+            errorMsg.cpwdErrMsg.current.style.setProperty('color','red');
             refs.cpwdRef.current.focus();
         }else  if(refs.usernameRef.current.value === ''){
-            alert('이름을 입력해주세요');
+            errorMsg.cpwdEusernameErrMsgrrMsg.current.style.setProperty('color','red');
             refs.usernameRef.current.focus();
         }else  if(refs.phoneRef.current.value === ''){
-            alert('전화번호를 입력해주세요');
+            errorMsg.phoneErrMsg.current.style.setProperty('color','red');
             refs.phoneRef.current.focus();
+        }else if(refs.phoneRef.current.value.length < 13){
+            alert('전화번호 양식에 맞춰 다시 작성해주세요');
+            refs.phoneRef.current.value = '';
+            refs.phoneRef.current.focus();
+        }
+        // 전번 left 함수써서 - 얘가 4번째 9번째 자리에 있는지 체크해야햠;;;
+        else  if(refs.addressRef.current.value === ''){
+            errorMsg.addressErrMsg.current.style.setProperty('color','red');
+            refs.addressRef.current.focus();
         }else  if(refs.emailRef.current.value === ''){
-            alert('이메일을 입력해주세요');
+            errorMsg.emailErrMsg.current.style.setProperty('color','red');
             refs.emailRef.current.focus();
         }else  if(refs.emailDomainRef.current.value === 'default'){
-            alert('이메일주소를 선택해주세요');
+            refs.emailDomainRef.current.style.setProperty('border','1px solid red');
             refs.emailDomainRef.current.focus();
+        }else if(isChecked1 === false){
+            alert('이용약관 동의를 진행해주세요');
+        }else if(isChecked2 === false){
+            alert('개인정보수집 이용에 동의를 진행해주세요');
         }
     }
 
@@ -78,7 +101,6 @@ export default function Signup(){
     const handleSubmit = (e) => {
         e.preventDefault();
         signupValidate();
-        alert('회원가입성공');
         // navigate('/login');
         console.log(data);
         
@@ -90,47 +112,50 @@ export default function Signup(){
                 <h1>회원가입</h1> 
                 <form action="" onSubmit={handleSubmit}>
                 <ul>
-                    <li className="signup-top">
+                    <li className="signup-top ">
                         <label htmlFor="">아이디</label>
-                        <input type="text"  onChange={handleSignupForm} name= 'id'
-                            ref={refs.idRef}
-                            placeholder="영문/숫자 조합으로 6~20자 사이로 입력해주세요"/>
-                        <span className="signup-err" style={{color:'red'}}>{errorMsg.idErrMsg}</span>
+                            <div className="dupliBox">
+                                <input type="text"  onChange={handleSignupForm} name= 'id'
+                                    ref={refs.idRef} className="dupliInput"
+                                    placeholder="영문/숫자 조합으로 6~50자 사이로 입력해주세요"/>
+                                <button className="dupliId">중복확인</button>
+                            </div>
+                        <span className="signup-err" ref={errorMsg.idErrMsg}>아이디를 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호</label>
                         <input type="text" onChange={handleSignupForm} name= 'password'
                             ref={refs.pwdRef}
                             placeholder="영문/숫자 조합으로 8~16자 사이로 입력해주세요"/>
-                        <span className="signup-err"  style={{color:'red'}}>{errorMsg.pwdErrMsg}</span>
+                        <span className="signup-err" ref={errorMsg.pwdErrMsg}>비밀번호를 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호 확인</label>
                         <input type="text"  onChange={handleSignupForm} name = 'cpwd'
                             ref={refs.cpwdRef}
                             placeholder="비밀번호를 한 번 더 입력해주세요"/>
-                        <span className="signup-err"  style={{color:'red'}}>{errorMsg.cpwdErrMsg}</span>
+                        <span className="signup-err" ref={errorMsg.cpwdErrMsg}>비밀번호 확인을 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">이름</label>
                         <input type="text"  onChange={handleSignupForm} name="username"
                             ref={refs.usernameRef}
                             placeholder="이름을 입력해주세요"/>
-                        <span className="signup-err"  style={{color:'red'}}>{errorMsg.usernameErrMsg}</span>
+                        <span className="signup-err" ref={errorMsg.usernameErrMsg} >이름을 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">연락처</label>
                         <input type="text"  onChange={handleSignupForm} name="'phone"
                             ref={refs.phoneRef}
-                            placeholder="- 없이 입력해주세요"/>
-                        <span className="signup-err"  style={{color:'red'}}>{errorMsg.phoneErrMsg}</span>
+                            placeholder="- 포함 13자리를 입력해주세요"/>
+                        <span className="signup-err" ref={errorMsg.phoneErrMsg}>전화번호를 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">주소</label>
                         <input type="text"  onChange={handleSignupForm} name="'address"
                             ref={refs.addressRef}
-                            placeholder="- 없이 입력해주세요"/>
-                        <span className="signup-err"  style={{color:'red'}}>{errorMsg.addressErrMsg}</span>
+                            placeholder="기본 배송주소를 입력해주세요"/>
+                        <span className="signup-err" ref={errorMsg.addressErrMsg}>주소를 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">이메일</label>
@@ -145,7 +170,7 @@ export default function Signup(){
                             <option value="gmail">gmail.com</option>
                             <option value="daum">daum.net</option>
                         </select>
-                        <span className="signup-err" style={{color:'red'}}>{errorMsg.emailErrMsg}</span>
+                        <span className="signup-err" ref={errorMsg.emailErrMsg}>이메일을 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">이용약관</label>
@@ -157,7 +182,8 @@ export default function Signup(){
                         </div>
                     </li>
                     <li className="signup-bottom">
-                        <input type="checkbox" className="checkInput" name="essential"/>
+                        <input type="checkbox" className="checkInput" name="checkBox1" 
+                            checked={isChecked1} onChange={handleChecked1}/>
                         <span>(필수) 이용약관에 동의 합니다.</span>
                     </li>
                     <li className="signup-bottom">
@@ -184,17 +210,18 @@ export default function Signup(){
                     </table>
                     </li>
                     <li className="signup-bottom">
-                        <input type="checkbox" name="essential" className="checkInput"/>
+                        <input type="checkbox" name="checkBox2" className="checkInput"
+                            checked={isChecked2} onChange={handleChecked2}/>
                         <span> (필수) 개인정보수집 이용에 동의합니다.</span>
                         <p>※ 약관 및 개인정보 처리방침은 홈페이지 하단에 전문이 게재되어 있습니다.</p>
                         <p>※ 이용약관 및 개인정보 수집.이용 내용에 대해 동의 거부가 가능하며, 이 경우 회원가입 및 관련 서비스는 이용이 불가합니다.</p>
                     </li>
                     <li className="signup-bottom">
-                        <input type="checkbox" name="inessential"className="checkInput"/>
+                        <input type="checkbox" className="checkInput"/>
                         <span> (선택) 이메일을 통한 상품 및 이벤트 정보 수신에 동의합니다.</span>
                     </li>
                     <li className="signup-bottom">
-                        <input type="checkbox" name="inessential" className="checkInput" />
+                        <input type="checkbox"  className="checkInput" />
                         <span> (선택) 휴대폰을 통한 상품 및 이벤트 정보 수신에 동의 합니다. 미동의 시에도 주문 결제와 관련된 정보는 발송됩니다.</span>
                     </li>
                     <li className="signup-bottom">
