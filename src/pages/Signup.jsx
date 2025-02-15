@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import {signupValidate} from '../utils/validate.js';
+import React from 'react';
+import {useInitRefs, initDatas} from '../utils/initdata.js';
 
 export default function Signup(){
     // const navigate = useNavigate();
@@ -8,50 +10,39 @@ export default function Signup(){
     const [isChecked2, setIsChecked2] = useState(false);
     const handleChecked1 = (e) => {setIsChecked1(e.target.checked);}
     const handleChecked2 = (e) => {setIsChecked2(e.target.checked);}
+    // 아디중복체크 눌럿는지 안눌럿는지
+    const [idCheckClick,setIdCheckClick] = useState(false);
 
-
-// 비밀번호 일치여부, 아이디 중복체크 진행 1.
-// 아이디 중복체크는 db에서 현재있는 회원들 아이디 정보가져와서 비교해야함;; 흑
-// 화면 지저분하니까 따로 파일에 refs 나 애들 저장해놓고 불러서 쓰기 2.
-// 회원가입버튼누르면 서버로 formData 전송 3.
-    const formDataArr = ['id','password','cpwd','username','phone','address','email','emailDomain'];
-    const formData = formDataArr.reduce((acc,key)=>{
-        acc[key]='';
-        return acc;
-    },{});
+    const {names,placehol,labels, formData} = initDatas();
+    const {refs,msgRefs} = useInitRefs(names);  
     const [data, setData] = useState(formData);
-
-    const refs = {
-        'idRef':useRef(null),
-        'pwdRef':useRef(null),
-        'cpwdRef':useRef(null),
-        'usernameRef':useRef(null),
-        'phoneRef':useRef(null),
-        'addressRef':useRef(null),
-        'emailRef':useRef(null),
-        'emailDomainRef':useRef(null)
-    };
-    
-
 
     const handleSignupForm = (e) => {
         const {name, value} = e.target;
         setData({...data, [name]:value});
     }
-    console.log(data);
-    
+    // console.log(data);
+
+    // 아이디 중복체크 클릭여부 함수
+    const handleIdCheck = () => {
+        setIdCheckClick(true);
+        //서버연동해서 아이디 중복체크 진행
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(signupValidate(refs,isChecked1,isChecked2)){
-            console.log(data);
-            alert('회원가입 성공');
-            // navigate('/login');
+        if(signupValidate(refs,msgRefs,isChecked1,isChecked2)){
+            if(idCheckClick === true){
+                alert('회원가입 성공');
+                // navigate('/login');
+            }else{
+                alert('아이디 중복확인 진행해');
+            }
         }
-    const handleIdCheck = () => {
-        //서버 연동해서 아디중복체크 진행
     }
-        
-    }
+    console.log(data);
+
+
     return (
         <>
         <div className="signupBox">
@@ -59,7 +50,50 @@ export default function Signup(){
                 <h1>회원가입</h1> 
                 <form action="" onSubmit={handleSubmit}>
                 <ul>
-                    <li className="signup-top ">
+                    {
+                        names&& names.map((name)=>(
+                            <>
+                            <li className="signup-top">
+                                <label htmlFor="">{ labels[ name ] }</label>
+                                {(name === 'email') ? (
+                                    <>
+                                    <input type="text"  onChange={handleSignupForm} name="email"
+                                        ref = { refs.current [ name.concat('Ref') ] } 
+                                        placeholder={ placehol[ name ] }/>
+                                    <span className="emailEmt">@</span>
+                                    <select name="emailDomain" id="" onChange={handleSignupForm}
+                                        ref = { refs.current [ name.concat('Ref') ] }  >
+                                        <option value="default">선택</option>
+                                        <option value="naver">naver.com</option>
+                                        <option value="gmail">gmail.com</option>
+                                        <option value="daum">daum.net</option>
+                                    </select>
+                                    </>
+                                ) : (
+                                    name === 'id' ? (
+                                        <div className="dupliBox">
+                                            <input type="text"  onChange={handleSignupForm} name= 'id'
+                                                ref = { refs.current [ name.concat('Ref') ] } 
+                                                 className="dupliInput"
+                                                placeholder={ placehol[ name ] }/>
+                                            <button type='button' onClick={handleIdCheck} className="dupliId">
+                                                중복확인
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <input type={ (name==='password' || name==='cpwd') ? 'password': 'text'}
+                                         onChange={handleSignupForm} name= 'password'
+                                        ref = { refs.current [ name.concat('Ref') ] }                                             
+                                            placeholder={ placehol[ name ] }/>
+                                    )
+                                )}
+                                <span className="signup-err"  style={{'color':'red'}}
+                                    ref={ msgRefs.current[ name.concat ('MsgRef') ] }></span>
+                            </li>
+                        </>
+                        ))
+                    }
+                    {/* <li className="signup-top ">
                         <label htmlFor="">아이디</label>
                             <div className="dupliBox">
                                 <input type="text"  onChange={handleSignupForm} name= 'id'
@@ -69,42 +103,42 @@ export default function Signup(){
                                     중복확인
                                 </button>
                             </div>
-                        <span className="signup-err"  style={{'color':'red'}}>{error.id}</span>
+                        <span className="signup-err"  style={{'color':'red'}} refs={msgRef.msgIdRef}>아디입력해</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호</label>
                         <input type="text" onChange={handleSignupForm} name= 'password'
                             ref={refs.pwdRef}
                             placeholder="영문/숫자 조합으로 8~16자 사이로 입력해주세요"/>
-                        <span className="signup-err"  style={{'color':'red'}}>{error.password}</span>
+                        <span className="signup-err"  style={{'color':'red'}}></span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호 확인</label>
                         <input type="text"  onChange={handleSignupForm} name = 'cpwd'
                             ref={refs.cpwdRef}
                             placeholder="비밀번호를 한 번 더 입력해주세요"/>
-                        <span className="signup-err"  style={{'color':'red'}}>{error.cpwd}</span>
+                        <span className="signup-err"  style={{'color':'red'}}></span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">이름</label>
                         <input type="text"  onChange={handleSignupForm} name="username"
                             ref={refs.usernameRef}
                             placeholder="이름을 입력해주세요"/>
-                        <span className="signup-err"  style={{'color':'red'}}>{error.username}</span>
+                        <span className="signup-err"  style={{'color':'red'}}></span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">연락처</label>
                         <input type="text"  onChange={handleSignupForm} name="'phone"
                             ref={refs.phoneRef}
                             placeholder="- 포함 13자리를 입력해주세요"/>
-                        <span className="signup-err"  style={{'color':'red'}}>{error.phone}</span>
+                        <span className="signup-err"  style={{'color':'red'}}></span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">주소</label>
                         <input type="text"  onChange={handleSignupForm} name="'address"
                             ref={refs.addressRef}
                             placeholder="기본 배송주소를 입력해주세요"/>
-                        <span className="signup-err"  style={{'color':'red'}}>{error.address}</span>
+                        <span className="signup-err"  style={{'color':'red'}}></span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">이메일</label>
@@ -119,8 +153,10 @@ export default function Signup(){
                             <option value="gmail">gmail.com</option>
                             <option value="daum">daum.net</option>
                         </select>
-                        <span className="signup-err"  style={{'color':'red'}}>{error.email}</span>
-                    </li>
+                        <span className="signup-err"  style={{'color':'red'}}></span>
+                    </li> */}
+
+
                     <li className="signup-top">
                         <label htmlFor="">이용약관</label>
                         <div className="textarea">
