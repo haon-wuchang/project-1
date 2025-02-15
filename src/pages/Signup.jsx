@@ -1,6 +1,10 @@
 import { useRef, useState } from "react";
 import {signupValidate,errorCheck} from '../utils/validate.js';
 import React from 'react';
+// 작동잘됨 이제 로직 간결하게 줄이는 작업하고
+// 아디중복체크 서버 연동해서 비교하고
+// 회원가입하면 서버에 저장되게 작업
+
 
 export default function Signup(){
     // const navigate = useNavigate();
@@ -19,6 +23,7 @@ export default function Signup(){
 
     const refs = {
         'idRef':useRef(null),
+        'idCheckRef':useRef(null),
         'pwdRef':useRef(null),
         'cpwdRef':useRef(null),
         'usernameRef':useRef(null),
@@ -72,6 +77,7 @@ export default function Signup(){
                 // navigate('/login');
             }else{
                 alert('아이디 중복확인 진행해');
+                refs.idCheckRef.current.focus();
             }
         }
         console.log(data);
@@ -116,7 +122,8 @@ export default function Signup(){
                                     ref={refs.idRef} 
                                     className="dupliInput"
                                     placeholder="영문/숫자 조합으로 6~50자 사이로 입력해주세요"/>
-                                <button type='button' onClick={handleIdCheck} className="dupliId">
+                                <button type='button' onClick={handleIdCheck} className="dupliId"
+                                    ref ={refs.idCheckRef}>
                                     중복확인
                                 </button>
                             </div>
