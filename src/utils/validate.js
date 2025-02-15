@@ -1,9 +1,9 @@
 
 export const signupValidate = (refs,msgRefs,isChecked1,isChecked2) => {
-    const refsEntries = Object.entries(refs.current);
-    const msgRefsEntries = Object.entries(msgRefs.current);
+    const refsEntries = Object.entries(refs);
+    const msgRefsEntries = Object.entries(msgRefs);
 
-    for(const i=0 ; i<refsEntries.length; i++){  
+    for(let  i = 0 ; i < refsEntries.length ; i++){  
         const item = refsEntries[i];  //itme = ['id':~~~]
         const name = item[0];
         const ref = item[1];
@@ -30,13 +30,13 @@ export const signupValidate = (refs,msgRefs,isChecked1,isChecked2) => {
             }  
         }
     }
-    // if(isChecked1 === false){
-    //     alert('이용약관 동의를 진행해주세요');
-    //     return false;
-    // }else if(isChecked2 === false){
-    //     alert('개인정보수집 이용에 동의를 진행해주세요');
-    //     return false;
-    // }
+    if(isChecked1 === false){
+        alert('이용약관 동의를 진행해주세요');
+        return false;
+    }else if(isChecked2 === false){
+        alert('개인정보수집 이용에 동의를 진행해주세요');
+        return false;
+    }
     return true; 
 }
 // if(refs.idRef.current.value === ''){
