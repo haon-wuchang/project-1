@@ -2,7 +2,6 @@ import { expr } from "jquery";
 
 export const signupValidate = (refs,error,setError,isChecked1,isChecked2) => {   
 
-
 if(refs.idRef.current.value === ''){
     setError({...error, ['id']:'아이디를 입력해주세요'});
     refs.idRef.current.focus();
@@ -71,10 +70,7 @@ export const errorCheck = (name,value,error,setError) => {
     const names = [
         {"name":"id", "msg":"아디를 입력해주세요"},
         {"name":"pwd", "msg":"비번을 입력해주세요"},
-        {"name":"cpwd", "msg":"비번확인을 입력해주세요"},
-        {"name":"username", "msg":"이름을 입력해주세요"},
-        {"name":"phone", "msg":"전번을 입력해주세요"},
-        {"name":"email", "msg":"이메일을 입력해주세요"}
+        {"name":"cpwd", "msg":"비번확인을 입력해주세요"}
         ];
 
     names.map((item)=>
