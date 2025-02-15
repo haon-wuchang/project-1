@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
-import { TbAdFilled } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
+import {signupValidate} from '../utils/validate.js';
 
 export default function Signup(){
     // const navigate = useNavigate();
@@ -15,17 +14,11 @@ export default function Signup(){
 // 아이디 중복체크는 db에서 현재있는 회원들 아이디 정보가져와서 비교해야함;; 흑
 // 화면 지저분하니까 따로 파일에 refs 나 애들 저장해놓고 불러서 쓰기 2.
 // 회원가입버튼누르면 서버로 formData 전송 3.
-
-    const formData = {
-        'id':'', 
-        'password':'',
-        'cpwd':'',
-        'username':'',
-        'phone':'',
-        'address':'',
-        'email':'',
-        'emailDomain':''
-    };
+    const formDataArr = ['id','password','cpwd','username','phone','address','email','emailDomain'];
+    const formData = formDataArr.reduce((acc,key)=>{
+        acc[key]='';
+        return acc;
+    },{});
     const [data, setData] = useState(formData);
 
     const refs = {
@@ -39,58 +32,7 @@ export default function Signup(){
         'emailDomainRef':useRef(null)
     };
     
-    
-        const errorMsg = {
-            'idErrMsg':useRef(null),
-            'pwdErrMsg':useRef(null),
-            'cpwdErrMsg':useRef(null),
-            'usernameErrMsg':useRef(null),
-            'phoneErrMsg':useRef(null),
-            'emailErrMsg':useRef(null),
-            'addressErrMsg':useRef(null),
-        };
 
-    const signupValidate = () => {
-        if(refs.idRef.current.value === ''){
-            errorMsg.idErrMsg.current.style.setProperty('color','red');
-            refs.idRef.current.focus();
-        }else if(refs.idRef.current.value.length < 6){
-            alert('6자 이상 아이디를 입력해주세요');
-            refs.idRef.current.value = '';
-            refs.idRef.current.focus();        
-        }else  if(refs.pwdRef.current.value === ''){
-            errorMsg.pwdErrMsg.current.style.setProperty('color','red');
-            refs.pwdRef.current.focus();
-        }else  if(refs.cpwdRef.current.value === ''){
-            errorMsg.cpwdErrMsg.current.style.setProperty('color','red');
-            refs.cpwdRef.current.focus();
-        }else  if(refs.usernameRef.current.value === ''){
-            errorMsg.cpwdEusernameErrMsgrrMsg.current.style.setProperty('color','red');
-            refs.usernameRef.current.focus();
-        }else  if(refs.phoneRef.current.value === ''){
-            errorMsg.phoneErrMsg.current.style.setProperty('color','red');
-            refs.phoneRef.current.focus();
-        }else if(refs.phoneRef.current.value.length < 13){
-            alert('전화번호 양식에 맞춰 다시 작성해주세요');
-            refs.phoneRef.current.value = '';
-            refs.phoneRef.current.focus();
-        }
-        // 전번 left 함수써서 - 얘가 4번째 9번째 자리에 있는지 체크해야햠;;;
-        else  if(refs.addressRef.current.value === ''){
-            errorMsg.addressErrMsg.current.style.setProperty('color','red');
-            refs.addressRef.current.focus();
-        }else  if(refs.emailRef.current.value === ''){
-            errorMsg.emailErrMsg.current.style.setProperty('color','red');
-            refs.emailRef.current.focus();
-        }else  if(refs.emailDomainRef.current.value === 'default'){
-            refs.emailDomainRef.current.style.setProperty('border','1px solid red');
-            refs.emailDomainRef.current.focus();
-        }else if(isChecked1 === false){
-            alert('이용약관 동의를 진행해주세요');
-        }else if(isChecked2 === false){
-            alert('개인정보수집 이용에 동의를 진행해주세요');
-        }
-    }
 
     const handleSignupForm = (e) => {
         const {name, value} = e.target;
@@ -100,9 +42,14 @@ export default function Signup(){
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        signupValidate();
-        // navigate('/login');
-        console.log(data);
+        if(signupValidate(refs,isChecked1,isChecked2)){
+            console.log(data);
+            alert('회원가입 성공');
+            // navigate('/login');
+        }
+    const handleIdCheck = () => {
+        //서버 연동해서 아디중복체크 진행
+    }
         
     }
     return (
@@ -118,44 +65,46 @@ export default function Signup(){
                                 <input type="text"  onChange={handleSignupForm} name= 'id'
                                     ref={refs.idRef} className="dupliInput"
                                     placeholder="영문/숫자 조합으로 6~50자 사이로 입력해주세요"/>
-                                <button className="dupliId">중복확인</button>
+                                <button type='button' onClick={handleIdCheck} className="dupliId">
+                                    중복확인
+                                </button>
                             </div>
-                        <span className="signup-err" ref={errorMsg.idErrMsg}>아이디를 입력해주세요</span>
+                        <span className="signup-err"  style={{'color':'red'}}>{error.id}</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호</label>
                         <input type="text" onChange={handleSignupForm} name= 'password'
                             ref={refs.pwdRef}
                             placeholder="영문/숫자 조합으로 8~16자 사이로 입력해주세요"/>
-                        <span className="signup-err" ref={errorMsg.pwdErrMsg}>비밀번호를 입력해주세요</span>
+                        <span className="signup-err"  style={{'color':'red'}}>{error.password}</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호 확인</label>
                         <input type="text"  onChange={handleSignupForm} name = 'cpwd'
                             ref={refs.cpwdRef}
                             placeholder="비밀번호를 한 번 더 입력해주세요"/>
-                        <span className="signup-err" ref={errorMsg.cpwdErrMsg}>비밀번호 확인을 입력해주세요</span>
+                        <span className="signup-err"  style={{'color':'red'}}>{error.cpwd}</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">이름</label>
                         <input type="text"  onChange={handleSignupForm} name="username"
                             ref={refs.usernameRef}
                             placeholder="이름을 입력해주세요"/>
-                        <span className="signup-err" ref={errorMsg.usernameErrMsg} >이름을 입력해주세요</span>
+                        <span className="signup-err"  style={{'color':'red'}}>{error.username}</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">연락처</label>
                         <input type="text"  onChange={handleSignupForm} name="'phone"
                             ref={refs.phoneRef}
                             placeholder="- 포함 13자리를 입력해주세요"/>
-                        <span className="signup-err" ref={errorMsg.phoneErrMsg}>전화번호를 입력해주세요</span>
+                        <span className="signup-err"  style={{'color':'red'}}>{error.phone}</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">주소</label>
                         <input type="text"  onChange={handleSignupForm} name="'address"
                             ref={refs.addressRef}
                             placeholder="기본 배송주소를 입력해주세요"/>
-                        <span className="signup-err" ref={errorMsg.addressErrMsg}>주소를 입력해주세요</span>
+                        <span className="signup-err"  style={{'color':'red'}}>{error.address}</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">이메일</label>
@@ -170,7 +119,7 @@ export default function Signup(){
                             <option value="gmail">gmail.com</option>
                             <option value="daum">daum.net</option>
                         </select>
-                        <span className="signup-err" ref={errorMsg.emailErrMsg}>이메일을 입력해주세요</span>
+                        <span className="signup-err"  style={{'color':'red'}}>{error.email}</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">이용약관</label>
