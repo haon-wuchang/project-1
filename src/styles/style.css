@@ -2096,3 +2096,6 @@ footer .etc .etc-right{
     margin: 0;
     justify-content: space-between;
 }
+.select-err:focus {
+    border: 1px solid red !important;
+}
