@@ -34,7 +34,7 @@ export const useRefDatas = (names) => {
             return acc;
         },{})
     )
-    refs.current.emaildomainRef = useRef(React.createRef()); 
+    refs.current.emailDomainRef = useRef(React.createRef()); 
     // console.log('Refs',refs);
 
     const msgRefs = useRef(

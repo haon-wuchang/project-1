@@ -23,12 +23,12 @@ export const signupValidate = (refs,msgRefs,isChecked1,isChecked2) => {
                 ref.current.focus();
                 return false;
             }
-            else{
-                msgRef.current.style.setProperty('color','white');
-            }
+            // else{
+            //     msgRef.current.style.setProperty('color','white');
+            // }
         }else if(name === 'emailDomainRef'){             
             if(ref.current.value === 'default'){
-                alert('이메일주소를 선택해주세요');
+                alert('이메일주소를 선택해주세요');    // 이거도 안뜨는데 💦
                 ref.current.focus();
                 return false;
             }                     
@@ -54,7 +54,7 @@ export const handleIdCheck = (idRef,idMsgRef,pwdRef,setIdCheckResult,setError,er
         idRef.current.focus();
         return false;
     }else {
-        //db 연동해서 중복인지 비교하고
+        //db 연동해서 중복인지 비교하고💦
         axios
             .post('http://localhost:9000/user/idCheck',{'idRef' : idRef.current.value})
             .then(res => console.log(res.data))
@@ -77,7 +77,7 @@ export const handleIdCheck = (idRef,idMsgRef,pwdRef,setIdCheckResult,setError,er
 }
 
 // 비번 일치여부 확인 /////////////////////////////////
-// error,setError 쓰면 에러남;;;; 얘도 비번일치하면 파란색으로 뜨게 하고싶은뎅 ㅜㅠㅜㅠㅜ 왜안대지
+// error,setError 쓰면 에러남;;;; 얘도 비번일치하면 파란색으로 뜨게 하고싶은뎅 ㅜㅠㅜㅠㅜ 왜안대지💦
 export const handlePasswordCheck = (pwdRef,cpwdRef,nameRef,pwdMsgRef,cpwdMsgRef,setError,error) => {
 if(pwdRef.current.value===''){
     // setError({...error,['pwd']:'비밀번호를 입력해주세요'});

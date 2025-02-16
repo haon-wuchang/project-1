@@ -56,7 +56,7 @@ export default function Signup(){
                                             placeholder={placeholder[name]}/>
                                         <span className="emailEmt">@</span>
                                         <select name="emailDomain" id="" onChange={handleSignupForm}
-                                            ref={refs.current['emaildomainRef']} className="select-err">
+                                            ref={refs.current['emailDomainRef']} className="select-err">
                                             <option value="default">선택</option>
                                             <option value="naver">naver.com</option>
                                             <option value="gmail">gmail.com</option>
