@@ -3,8 +3,8 @@ import * as controller from '../controller/signupController.js';
 
 const router = express.Router();
 
-router.post('/dupliId',controller.getId);    // 아이디중복확인을 위한 서버
-
+router.post('/idCheck',controller.getId);    // 아이디중복확인
+router.post('/signup',controller.registCustomer)  // 회원가입폼 디비연동
 
 
 export default router;
