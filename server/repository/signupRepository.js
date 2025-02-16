@@ -2,7 +2,8 @@
 //db에서 아이디가져와서 중복확인 진행
 export const getId = async() => {
     const sql = `
-        select ~~~
+        select~~ 
+        
                 `;
     
     const result = await db.execute(sql,[]);

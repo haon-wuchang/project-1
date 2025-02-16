@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 export const signupValidate = (refs,msgRefs,isChecked1,isChecked2) => {   
     const refsEntries = Object.entries(refs.current);
@@ -53,9 +54,15 @@ export const handleIdCheck = (idRef,idMsgRef,pwdRef,setIdCheckResult,setError,er
         idRef.current.focus();
         return false;
     }else {
+        //db 연동해서 중복인지 비교하고
+        axios
+            .post('http://localhost:9000/user/idCheck',{'idRef' : idRef.current.value})
+            .then(res => console.log(res.data))
+            .catch(error => console.log(error));
+
+
         const did = 'test';
         if(idRef.current.value===did){
-            //db 연동해서 중복인지 비교하고
             setError({...error,['id']:'사용중인 아이디입니다'});
             idMsgRef.current.style.setProperty('color','red');
             idRef.current.value = '';

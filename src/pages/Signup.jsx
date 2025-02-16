@@ -20,7 +20,6 @@ export default function Signup(){
     const handleSignupForm = (e) => {
         const {name, value} = e.target;       
         setData({...data, [name]:value});
-        // msgRefs.idMsgRefs.current.style.setProperty('color','red');
     }
     // console.log(data);
 
@@ -31,8 +30,9 @@ export default function Signup(){
                 alert('중복체크진행해');
                 return false;
             } else {
-                // 서버 로 보내기
-                alert('회원가입성공'); 
+                // 서버 로 보내기  우선 아디 중복체크 db에서 가져와서 한 후에 이거 하셈
+                // alert('회원가입성공'); 
+
             }   
         } 
     }
