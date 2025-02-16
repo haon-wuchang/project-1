@@ -6,6 +6,8 @@ export const initDatas = () => {
     const placeHoldersKr = ['6~50자 이내의 아이디를 입력해주세요','비밀번호 입력 10~20자 이내','비밀번호 재입력',
         '이름을 입력해주세요','휴대폰번호 입력 ( - ) 포함','주소를 입력해주세요','이메일주소 입력'];
 
+
+
     const formData = names.reduce((acc,name)=>{
         acc[name] = '';
         return acc;

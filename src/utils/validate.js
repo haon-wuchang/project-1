@@ -22,6 +22,9 @@ export const signupValidate = (refs,msgRefs,isChecked1,isChecked2) => {
                 ref.current.focus();
                 return false;
             }
+            else{
+                msgRef.current.style.setProperty('color','white');
+            }
         }else if(name === 'emailDomainRef'){             
             if(ref.current.value === 'default'){
                 alert('이메일주소를 선택해주세요');
@@ -43,36 +46,54 @@ export const signupValidate = (refs,msgRefs,isChecked1,isChecked2) => {
 
 
 // 아디 중복체크 함수 /////////////////////////////////////////
-export const handleIdCheck = (idRef,idMsgRef,pwdRef,setIdCheckResult) => {
+export const handleIdCheck = (idRef,idMsgRef,pwdRef,setIdCheckResult,setError,error) => {
     if(idRef.current.value===''){
+        setError({...error,['id']:'아이디를 입력해주세요'});
         idMsgRef.current.style.setProperty('color','red');
         idRef.current.focus();
         return false;
     }else {
-       //db 연동해서 중복인지 비교하고
-       setIdCheckResult('아이디중복체크완료');
+        const did = 'test';
+        if(idRef.current.value===did){
+            //db 연동해서 중복인지 비교하고
+            setError({...error,['id']:'사용중인 아이디입니다'});
+            idMsgRef.current.style.setProperty('color','red');
+            idRef.current.value = '';
+            idRef.current.focus();
+        }else{
+            setError({...error,['id']:'사용가능한 아이디입니다'});
+            idMsgRef.current.style.setProperty('color','blue');
+            setIdCheckResult('아이디중복체크완료');
+            pwdRef.current.focus();
+        }
     }
 }
 
 // 비번 일치여부 확인 /////////////////////////////////
-export const handlePasswordCheck = (pwdRef,cpwdRef,nameRef,pwdMsgRef,cpwdMsgRef) => {
+// error,setError 쓰면 에러남;;;; 얘도 비번일치하면 파란색으로 뜨게 하고싶은뎅 ㅜㅠㅜㅠㅜ 왜안대지
+export const handlePasswordCheck = (pwdRef,cpwdRef,nameRef,pwdMsgRef,cpwdMsgRef,setError,error) => {
 if(pwdRef.current.value===''){
+    // setError({...error,['pwd']:'비밀번호를 입력해주세요'});
     pwdMsgRef.current.style.setProperty('color','red');
     pwdRef.current.focus();
     return false;
 } else if(cpwdRef.current.value==='') {
+    // setError({...error,['cpwd']:'비밀번호확인을 입력해주세요'});
     cpwdMsgRef.current.style.setProperty('color','red');
     cpwdRef.current.focus();
     return false;
 }else {
     if(pwdRef.current.value!==cpwdRef.current.value){   
-        alert('비번일치 x');
+        // setError({...error,['cpwd']:'비밀번호가 일치하지않습니다'});
+        cpwdMsgRef.current.style.setProperty('color','red');
+        // alert('비번일치 안함');
         pwdRef.current.value = '';
         cpwdRef.current.value = '';
         pwdRef.current.focus();      
         return false;         
     } else if (pwdRef.current.value===cpwdRef.current.value) {
-        alert('ok');
+        // setError({...error,['cpwd']:'비밀번호가 일치합니다'});
+        cpwdMsgRef.current.style.setProperty('color','blue');
         nameRef.current.focus();
         return false;
     }

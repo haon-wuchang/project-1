@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import {  useState } from "react";
 import {signupValidate,handleIdCheck,handlePasswordCheck} from '../utils/validate.js';
 import React from 'react';
 import {initDatas,useRefDatas} from '../utils/initDatas.js';
@@ -7,7 +7,8 @@ export default function Signup(){
     // const navigate = useNavigate();
     const {names,placeholder,labelsKr, formData} = initDatas();
     const {refs,msgRefs} = useRefDatas(names);  
-    const [data, setData] = useState(formData);       
+    const [data, setData] = useState(formData);      
+    const [error, setError] = useState(formData);
     const[idCheckResult,setIdCheckResult] = useState('default');  
 
     const [isChecked1, setIsChecked1] = useState(false); //체크박스 상태 관리
@@ -19,8 +20,9 @@ export default function Signup(){
     const handleSignupForm = (e) => {
         const {name, value} = e.target;       
         setData({...data, [name]:value});
+        // msgRefs.idMsgRefs.current.style.setProperty('color','red');
     }
-    console.log(data);
+    // console.log(data);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,7 +36,7 @@ export default function Signup(){
             }   
         } 
     }
-
+    
     return (
         <>
         <div className="signupBox">
@@ -78,7 +80,8 @@ export default function Signup(){
                                                     refs.current['idRef'],
                                                     msgRefs.current['idMsgRef'],
                                                     refs.current['pwdRef'],
-                                                    setIdCheckResult
+                                                    setIdCheckResult,
+                                                    setError,error
                                                 )}}>
                                                 중복확인
                                             </button>
@@ -94,11 +97,12 @@ export default function Signup(){
                                             placeholder={placeholder[name]}
                                             onBlur={
                                                 (name==='cpwd')? ()=>{handlePasswordCheck(
+                                                    // error,setError,
                                                     refs.current['pwdRef'],
                                                     refs.current['cpwdRef'],
                                                     refs.current['usernameRef'],
-                                                    msgRefs.current['pwdRef'],
-                                                    msgRefs.current['cpwdRef']
+                                                    msgRefs.current['pwdMsgRef'],
+                                                    msgRefs.current['cpwdMsgRef']
                                                 )} : null 
                                             }/>
                                         )
@@ -106,7 +110,9 @@ export default function Signup(){
                                 }
                             <span className="signup-err" 
                                 ref={msgRefs.current[name.concat('MsgRef')]}>
-                                    {placeholder[name]}</span>                                                  
+                                    {idCheckResult === 'default' ? placeholder[name] : (
+                                        name === 'id' ? error.id : placeholder[name]
+                                    )}</span>                                                  
                         </li>
                     ))}                  
                     <li className="signup-top">

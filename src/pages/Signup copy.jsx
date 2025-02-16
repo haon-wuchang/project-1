@@ -19,7 +19,6 @@ export default function Signup(){
                 }
   
     const [data, setData] = useState(formData);
-    const [error,setError] = useState({});
 
     const refs = {
         'idRef':useRef(null),
@@ -31,6 +30,17 @@ export default function Signup(){
         'addressRef':useRef(null),
         'emailRef':useRef(null),
         'emailDomainRef':useRef(null)
+    };
+    const msgRefs = {
+        'idMsgRef':useRef(null),
+        'idCheckRef':useRef(null),
+        'pwdMsgRef':useRef(null),
+        'cpwdMsgRef':useRef(null),
+        'usernameMsgRef':useRef(null),
+        'phoneMsgRef':useRef(null),
+        'addressMsgRef':useRef(null),
+        'emailMsgRef':useRef(null),
+        'emailDomainMsgRef':useRef(null)
     };
 
     //체크박스 상태 관리
@@ -88,17 +98,13 @@ export default function Signup(){
         const cpwdCheck = refs.cpwdRef.current;
 
         if(pwdCheck.value===''){
-            errorCheck('pwd',pwdCheck.value,error,setError);
             pwdCheck.focus();
         } else if(cpwdCheck.value===''){
-            errorCheck('cpwd',cpwdCheck.value,error,setError);
             cpwdCheck.focus();
             
         }else{
             if(pwdCheck.value===cpwdCheck.value){
-                setError({...error, ['cpwd']:'비밀번호가 일치합니다'});
             }else{
-                setError({...error, ['cpwd']:'비밀번호가 일치하지않습니다'});
                 pwdCheck.value='';
                 cpwdCheck.value='';
                 refs.pwdRef.current.focus();
@@ -128,7 +134,7 @@ export default function Signup(){
                                 </button>
                             </div>
                         <span className="signup-err"   style={{color:'red'}}                          
-                           >{error.id}</span>
+                           ref={msgRefs.idMsgRef}>아이디를 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호</label>
