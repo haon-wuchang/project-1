@@ -2099,3 +2099,166 @@ footer .etc .etc-right{
 .select-err:focus {
     border: 1px solid red !important;
 }
+
+/* 1440px myPqge */
+.mypage-box{
+    width: 1440px;
+    margin: auto;
+}
+.mypage-top-menu{
+    text-align: left;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+}
+.mypage-top-menu > span , .mypage-top-menu-icon{
+    margin: 0;
+    font-size: 13px;
+}
+.mypage-top-menu > span:first-child, .mypage-top-menu-icon{
+    color: #767676;
+}
+.mypage-top-menu-icon{
+    font-size: 11px;
+    padding: 0 4px;
+}
+.mypage-top-box{
+    text-align: center;
+    width: 100%;
+    font-size: 35px;
+    padding: 20px 0;
+}
+.mypage-bottom-box{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+.mypage-bottom-left{
+    margin: 0;
+    /* border: 1px solid red; */
+    padding-right: 50px;
+}
+.mypage-bottom-right{
+    margin: 0;
+    /* border: 1px solid blue; */
+    width: 1200px;
+}
+.mypage-bottom-left > h3{
+    font-size: 17px;
+    padding-bottom: 10px;
+    font-weight: 600;
+
+}
+.mypage-bottom-left >ul>li{
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+.mypage-bottom-left >ul>li>a{
+    color: #767676;
+}
+.mypage-bottom-left >ul>li:last-child{
+    padding-bottom: 20px;
+}
+.mypage-bottom-my{
+    /* border: 1px solid red; */
+    background-color: rgb(232, 240, 247);
+    border-radius: 3px;
+    margin: 10px 0 60px 0;
+    text-align: center;
+    padding: 30px;
+}
+.mypage-bottom-my-top{
+    display: flex;
+    justify-content: space-between;
+}
+.mypage-bottom-my-top > div{
+    margin: 0;
+}
+.mypage-bottom-my-top-left, .mypage-bottom-my-top-right{
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+
+}
+.mypage-bottom-my-top-left > span:nth-child(2){
+    font-size: 30px;
+    font-weight: 700;
+}
+.mypage-bottom-my-top-left > span:first-child{
+    font-size: 23px;
+}
+.mypage-bottom-my-top-left > span:last-child{
+    font-size: 20px;
+}
+.mypage-bottom-my-top-right{
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 5px 7px;
+}
+.mypage-bottom-my-top-right>span{
+    font-size: 14px;
+}
+.mypage-bottom-my-bottom{
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+.mypage-bottom-my-bottom>ul{
+    display: flex;
+    padding: 25px 0;
+    justify-content: space-between;
+}
+.mypage-bottom-my-bottom>ul>a{
+    color: black;
+    border-right: 1px solid rgb(192, 192, 192);
+    /* border: 1px solid red; */
+    width: 25%;
+}
+.mypage-bottom-my-bottom>ul>a:last-child{
+    border: none;
+}
+.mypage-order-product{
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    padding: 20px 0;
+}
+.mypage-order-product-top{
+    display: flex;
+    justify-content: space-between;
+}
+.mypage-order-product-top>h2{
+    margin: 0;
+}
+.mypage-order-product-top>div{
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+.mypage-order-product-bottom{
+    text-align: center;
+    padding: 20px 0;
+}
+.mypage-active{
+    padding: 20px 0;
+
+}
+.mypage-active-box{
+    padding: 20px 0;
+}
+.mypage-active-box >ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0;
+    border: 1px solid gray;
+    border-radius: 7px;
+}
+.mypage-active-box >ul >a{
+    color: black;
+    border-right: 1px solid rgb(192, 192, 192);
+    /* border: 1px solid red; */
+    text-align: center;
+    width: 25%;
+
+}

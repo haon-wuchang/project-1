@@ -9,6 +9,7 @@ import Carts from './pages/Carts.jsx';
 import Person from './pages/Person.jsx';
 import Products from './pages/Products.jsx';
 import DetailProducts from './pages/DetailProducts.jsx';
+import EditMember from './components/person/EditMember.jsx';
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
                     <Route path='/carts' element={<Carts/>}></Route>    
                     <Route path='/person' element={<Person/>}></Route>
                     <Route path={`/detail`} element={<DetailProducts/>}></Route>
+                    <Route path='/person/editMemberInfo' element={<EditMember/>}></Route>
             </Route>
           </Routes>
         </BrowserRouter>
