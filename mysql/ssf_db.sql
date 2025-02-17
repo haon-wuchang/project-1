@@ -4,7 +4,8 @@ show databases;
 USE shopping_mall;
 select * from customers;
 desc customers;
-select username, count(username) as count from customers where username = 'dxzf76';
+
+
 -- 관리자 테이블
 CREATE TABLE admins ( -- 관리자 정보를 저장하는 테이블 생성
     aid INT AUTO_INCREMENT PRIMARY KEY, -- 고유한 관리자 ID (자동 증가, 기본 키)
