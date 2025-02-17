@@ -23,12 +23,12 @@ export const signupValidate = (refs,msgRefs,isChecked1,isChecked2) => {
                 ref.current.focus();
                 return false;
             }
-            // else{
-            //     msgRef.current.style.setProperty('color','white');
-            // }
+            else{
+                msgRef.current.style.setProperty('color','white');
+            }
         }else if(name === 'emailDomainRef'){             
             if(ref.current.value === 'default'){
-                alert('이메일주소를 선택해주세요');    // 이거도 안뜨는데 💦
+                alert('이메일주소를 선택해주세요');   
                 ref.current.focus();
                 return false;
             }                     
@@ -54,25 +54,25 @@ export const handleIdCheck = (idRef,idMsgRef,pwdRef,setIdCheckResult,setError,er
         idRef.current.focus();
         return false;
     }else {
-        //db 연동해서 중복인지 비교하고💦
         axios
-            .post('http://localhost:9000/user/idCheck',{'idRef' : idRef.current.value})
-            .then(res => console.log(res.data))
+            .post('http://localhost:9000/user/idCheck',{'id' : idRef.current.value})
+            .then(res =>{ 
+                // console.log('sqlresult',res.data.count);
+                if(res.data.count === 1){
+                    setError({...error,['id']:'사용중인 아이디입니다'});
+                    idMsgRef.current.style.setProperty('color','red');
+                    idRef.current.value = '';
+                    idRef.current.focus();
+                }else{
+                    setError({...error,['id']:'사용가능한 아이디입니다'});
+                    idMsgRef.current.style.setProperty('color','blue');
+                    setIdCheckResult('아이디중복체크완료');
+                    pwdRef.current.focus();
+                }
+            })
             .catch(error => console.log(error));
 
 
-        const did = 'test';
-        if(idRef.current.value===did){
-            setError({...error,['id']:'사용중인 아이디입니다'});
-            idMsgRef.current.style.setProperty('color','red');
-            idRef.current.value = '';
-            idRef.current.focus();
-        }else{
-            setError({...error,['id']:'사용가능한 아이디입니다'});
-            idMsgRef.current.style.setProperty('color','blue');
-            setIdCheckResult('아이디중복체크완료');
-            pwdRef.current.focus();
-        }
     }
 }
 
@@ -91,15 +91,15 @@ if(pwdRef.current.value===''){
     return false;
 }else {
     if(pwdRef.current.value!==cpwdRef.current.value){   
-        // setError({...error,['cpwd']:'비밀번호가 일치하지않습니다'});
+        // setError({...error,['pwd']:'비밀번호가 일치하지않습니다'});
         cpwdMsgRef.current.style.setProperty('color','red');
-        // alert('비번일치 안함');
+        alert('비밀번호가 일치하지 않습니다');
         pwdRef.current.value = '';
         cpwdRef.current.value = '';
         pwdRef.current.focus();      
         return false;         
     } else if (pwdRef.current.value===cpwdRef.current.value) {
-        // setError({...error,['cpwd']:'비밀번호가 일치합니다'});
+        // setError({...error,['pwd']:'비밀번호가 일치합니다'});
         cpwdMsgRef.current.style.setProperty('color','blue');
         nameRef.current.focus();
         return false;

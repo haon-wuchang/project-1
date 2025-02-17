@@ -2,9 +2,13 @@ import {  useState } from "react";
 import {signupValidate,handleIdCheck,handlePasswordCheck} from '../utils/validate.js';
 import React from 'react';
 import {initDatas,useRefDatas} from '../utils/initDatas.js';
+import axios from "axios";
+import {useNavigate} from 'react-router-dom';
+
 
 export default function Signup(){
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
+
     const {names,placeholder,labelsKr, formData} = initDatas();
     const {refs,msgRefs} = useRefDatas(names);  
     const [data, setData] = useState(formData);      
@@ -21,7 +25,6 @@ export default function Signup(){
         const {name, value} = e.target;       
         setData({...data, [name]:value});
     }
-    // console.log(data);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,8 +33,16 @@ export default function Signup(){
                 alert('중복체크진행해');
                 return false;
             } else {
-                // 서버 로 보내기  우선 아디 중복체크 db에서 가져와서 한 후에 이거 하셈
-                // alert('회원가입성공'); 
+                axios
+                    .post('http://localhost:9000/user/signup',data)
+                    .then(res =>{
+                        console.log(res.data);
+                        if(res.data.result === 1 ){
+                            alert('회원가입성공'); 
+                            navigate('/login');
+                        }
+                    })
+                    .catch(error => console.log(error));
 
             }   
         } 
@@ -51,7 +62,7 @@ export default function Signup(){
                                     <>
                                         <input type="text"  
                                             onChange={handleSignupForm} 
-                                            name="email"
+                                            name={name}
                                             ref={refs.current[name.concat('Ref')]}
                                             placeholder={placeholder[name]}/>
                                         <span className="emailEmt">@</span>
@@ -69,7 +80,7 @@ export default function Signup(){
                                         <div className="dupliBox">
                                             <input type="text"  
                                                 onChange={handleSignupForm} 
-                                                name= 'id'
+                                                name= {name}
                                                 ref= {refs.current[name.concat('Ref')]}  
                                                 className="dupliInput"
                                                 placeholder={placeholder[name]}/>
@@ -92,11 +103,11 @@ export default function Signup(){
                                         ) : (
                                         <input type={(name==='pwd' || name==='cpwd') ? 'password': 'text'} 
                                             onChange={handleSignupForm} 
-                                            name= 'pwd'
+                                            name= {name}
                                             ref= {refs.current[name.concat('Ref')]} 
                                             placeholder={placeholder[name]}
                                             onBlur={
-                                                (name==='cpwd')? ()=>{handlePasswordCheck(
+                                                (name==='cpwd') ? ()=>{handlePasswordCheck(
                                                     // error,setError,
                                                     refs.current['pwdRef'],
                                                     refs.current['cpwdRef'],
@@ -112,7 +123,9 @@ export default function Signup(){
                                 ref={msgRefs.current[name.concat('MsgRef')]}>
                                     {idCheckResult === 'default' ? placeholder[name] : (
                                         name === 'id' ? error.id : placeholder[name]
-                                    )}</span>                                                  
+                                    )}</span>           
+
+
                         </li>
                     ))}                  
                     <li className="signup-top">
