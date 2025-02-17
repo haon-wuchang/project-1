@@ -2,9 +2,9 @@ show databases;
 -- drop database shopping_mall;
 -- create database shopping_mall;
 USE shopping_mall;
-show tables;
-
-
+select * from customers;
+desc customers;
+select username, count(username) as count from customers where username = 'dxzf76';
 -- 관리자 테이블
 CREATE TABLE admins ( -- 관리자 정보를 저장하는 테이블 생성
     aid INT AUTO_INCREMENT PRIMARY KEY, -- 고유한 관리자 ID (자동 증가, 기본 키)
@@ -121,6 +121,7 @@ CREATE TABLE favorites ( -- 고객이 좋아요(찜)한 상품 정보를 저장�
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE, -- 고객이 삭제되면 해당 좋아요 기록도 삭제
     FOREIGN KEY (product_id) REFERENCES products(pid) ON DELETE CASCADE -- 상품이 삭제되면 좋아요 기록도 삭제
 );
+
 
 -- 주문 테이블 (super_admin만 접근 가능)
 CREATE TABLE orders ( -- 고객의 주문 정보를 저장하는 테이블 생성
