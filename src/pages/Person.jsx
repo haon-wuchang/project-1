@@ -107,6 +107,44 @@ export default function Person(){
                             <span>최근 주문 내역이 없습니다</span>
                         </div>
                     </div>
+                    <div className="mypage-wishList" >
+                        <div className="mypage-wishList-top" >
+                            <h2>위시리스트</h2>
+                            <div>
+                                <span>더보기</span>
+                                <span><MdKeyboardArrowRight /></span>
+                            </div>
+                        </div>
+                        <div className="mypage-wishList-tab" >
+                            <ul>
+                                <li className="mypage-wishList-tab-active mypage-wishList-tab-none">상품</li>
+                                <li className=" mypage-wishList-tab-none">브랜드</li>
+                                <li className=" mypage-wishList-tab-none">콘텐츠</li>
+                            </ul>
+                        </div>
+                        <div className="mypage-wishList-items">
+                            <div>
+                            아이템 컴포넌트 이거는 언니가 메인화면에 만든거 써랑
+                             얘 5개 복붙
+                            </div>
+                            <div>
+                            아이템 컴포넌트 이거는 언니가 메인화면에 만든거 써랑
+                             얘 5개 복붙
+                            </div>
+                            <div>
+                            아이템 컴포넌트 이거는 언니가 메인화면에 만든거 써랑
+                             얘 5개 복붙
+                            </div>
+                            <div>
+                            아이템 컴포넌트 이거는 언니가 메인화면에 만든거 써랑
+                             얘 5개 복붙
+                            </div>
+                            <div>
+                            아이템 컴포넌트 이거는 언니가 메인화면에 만든거 써랑
+                             얘 5개 복붙
+                            </div>
+                        </div>
+                    </div>
                     <div className="mypage-active">
                         <h2>활동내역</h2>
                         <div className="mypage-active-box">
