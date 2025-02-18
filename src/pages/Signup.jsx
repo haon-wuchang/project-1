@@ -30,7 +30,7 @@ export default function Signup(){
         e.preventDefault();
         if(signupValidate(refs,msgRefs,isChecked1,isChecked2)){  
             if(idCheckResult==='default'){
-                alert('중복체크진행해');
+                alert('아이디 중복체크를 진행해주세요');
                 return false;
             } else {
                 axios

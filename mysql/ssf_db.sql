@@ -5,6 +5,9 @@ USE shopping_mall;
 select * from customers;
 desc customers;
 
+alter table `customers` auto_increment = 1;
+set @count = 0;
+update `customers` set customer_id = @count:=@count+1;
 
 -- 관리자 테이블
 CREATE TABLE admins ( -- 관리자 정보를 저장하는 테이블 생성
