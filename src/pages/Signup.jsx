@@ -69,9 +69,9 @@ export default function Signup(){
                                         <select name="emailDomain" id="" onChange={handleSignupForm}
                                             ref={refs.current['emailDomainRef']} className="select-err">
                                             <option value="default">선택</option>
-                                            <option value="naver">naver.com</option>
-                                            <option value="gmail">gmail.com</option>
-                                            <option value="daum">daum.net</option>
+                                            <option value="naver.com">naver.com</option>
+                                            <option value="gmail.com">gmail.com</option>
+                                            <option value="daum.net">daum.net</option>
                                         </select>
                                     </>
                                     ):(
@@ -123,7 +123,8 @@ export default function Signup(){
                                 ref={msgRefs.current[name.concat('MsgRef')]}>
                                     {idCheckResult === 'default' ? placeholder[name] : (
                                         name === 'id' ? error.id : placeholder[name]
-                                    )}</span>           
+                                    )}
+                                    </span>           
 
 
                         </li>

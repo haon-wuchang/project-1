@@ -77,7 +77,6 @@ export const handleIdCheck = (idRef,idMsgRef,pwdRef,setIdCheckResult,setError,er
 }
 
 // 비번 일치여부 확인 /////////////////////////////////
-// error,setError 쓰면 에러남;;;; 얘도 비번일치하면 파란색으로 뜨게 하고싶은뎅 ㅜㅠㅜㅠㅜ 왜안대지💦
 export const handlePasswordCheck = (pwdRef,cpwdRef,nameRef,pwdMsgRef,cpwdMsgRef,setError,error) => {
 if(pwdRef.current.value===''){
     // setError({...error,['pwd']:'비밀번호를 입력해주세요'});
@@ -100,7 +99,7 @@ if(pwdRef.current.value===''){
         return false;         
     } else if (pwdRef.current.value===cpwdRef.current.value) {
         // setError({...error,['pwd']:'비밀번호가 일치합니다'});
-        cpwdMsgRef.current.style.setProperty('color','blue');
+        // cpwdMsgRef.current.style.setProperty('color','blue');
         nameRef.current.focus();
         return false;
     }

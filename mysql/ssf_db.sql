@@ -1,13 +1,14 @@
 show databases;
+create database shopping_mall;
+USE shopping_mall; 
 -- drop database shopping_mall;
--- create database shopping_mall;
-USE shopping_mall;
-select * from customers;
-desc customers;
+show tables;
+alter table `customers` auto_increment =1; 
+set @count = 0 ;
+update `customers` set customer_id = @count :=@count+1;
 
-alter table `customers` auto_increment = 1;
-set @count = 0;
-update `customers` set customer_id = @count:=@count+1;
+select * from customers;
+delete from customers where customer_id = '3';
 
 -- 관리자 테이블
 CREATE TABLE admins ( -- 관리자 정보를 저장하는 테이블 생성
@@ -26,7 +27,7 @@ INSERT INTO admins (username, email, password, role, is_active) VALUES
 ('superadmin', 'superadmin@google.com', 'superadmin123', 'super_admin', TRUE),
 ('manager1', 'manager1@naver.com', 'manager1123', 'product_manager', TRUE),
 ('manager2', 'manager2@daum.com', 'manager2123', 'product_manager', TRUE);
-select * from admins;
+-- select * from products;
 select count(*) as result_rows
         from admins
         where username = 'superadmin' and password = 'superadmin123';
@@ -71,7 +72,7 @@ CREATE TABLE customers ( -- 회원(고객) 정보를 저장하는 테이블 생�
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 계정 정보 수정 시간 (수정될 때마다 자동 갱신)
 );
 
-select * from customers;-- 상품 테이블 (모든 관리자 접근 가능)
+select * from customers; -- 상품 테이블 (모든 관리자 접근 가능)
 CREATE TABLE products ( -- 상품 정보를 저장하는 테이블 생성
     pid INT PRIMARY KEY, -- 고유한 상품 ID (기본 키, JSON에서 직접 부여)
     category VARCHAR(50), -- 상품의 주요 카테고리 (예: 아우터, 상의, 하의, 신발 등)
@@ -88,11 +89,16 @@ CREATE TABLE products ( -- 상품 정보를 저장하는 테이블 생성
     discount_rate INT DEFAULT 0, -- 할인율 (기본값: 0, 최대 100%까지 가능)
     discounted_price INT NOT NULL, -- 할인 적용된 최종 가격 (필수 입력)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 상품 등록 시간 (자동 기록)
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 상품 정보 수정 시간 (수정될 때마다 자동 갱신)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 상품 정보 수정 시간 (수정될 때마다 자동 갱신)
+    
 );
-
+ALTER TABLE products 
+ADD COLUMN brand VARCHAR(100);
+ALTER TABLE products 
+ADD COLUMN delivery_fee VARCHAR(100) not null;
+select count(*), brand from products group by brand;
 select * from products;
--- DELETE FROM products WHERE id BETWEEN 1001 AND 1050;
+DELETE FROM products WHERE pid BETWEEN 1001 AND 1050;
 
 
 -- 관리자별 상품 접근 권한 테이블
@@ -121,11 +127,11 @@ CREATE TABLE favorites ( -- 고객이 좋아요(찜)한 상품 정보를 저장�
     fid INT auto_increment PRIMARY KEY, -- 고유한 좋아요 ID (기본 키, JSON에서 직접 부여)
     customer_id INT NOT NULL, -- 좋아요를 누른 고객 ID (외래 키)
     product_id INT NOT NULL, -- 좋아요한 상품 ID (외래 키)
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 좋아요를 누른 시간 (자동 기록)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 좋아요를 누른 시간 (자동 기록)
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE, -- 고객이 삭제되면 해당 좋아요 기록도 삭제
     FOREIGN KEY (product_id) REFERENCES products(pid) ON DELETE CASCADE -- 상품이 삭제되면 좋아요 기록도 삭제
 );
-
+drop table favorites;
 
 -- 주문 테이블 (super_admin만 접근 가능)
 CREATE TABLE orders ( -- 고객의 주문 정보를 저장하는 테이블 생성
@@ -139,6 +145,10 @@ CREATE TABLE orders ( -- 고객의 주문 정보를 저장하는 테이블 생�
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 주문 날짜 및 시간 (자동 기록)
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE -- 고객이 삭제되면 해당 고객의 주문도 삭제
 );
+ALTER TABLE orders ADD COLUMN payment_method VARCHAR(50) NOT NULL; -- 결제 수단
+
+ALTER TABLE orders
+ADD COLUMN delivery_message VARCHAR(255) NULL AFTER shipping_address;
 
 -- INSERT INTO orders (id, customer_id, order_number, total_price, shipping_address, status, refund_amount, order_date)
 -- VALUES
@@ -202,7 +212,13 @@ CREATE TABLE guests ( -- 비회원(게스트) 정보를 저장하는 테이블 �
     address VARCHAR(255) DEFAULT NULL, -- 비회원 배송 주소 (선택 입력)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 비회원 정보 생성 시간 (자동 기록)
 );
+INSERT INTO guests (name, phone, order_number, email, address)
+VALUES ('홍길동', '01012345678', 'abc1234', 'honggildong@example.com', '서울 동작구 동작대로 3');
 
+select * from orders;
+select count(*) as result_rows
+from guests
+where name = '홍길동' and phone = '01012345678' and order_number = 'abc1234';
 ALTER TABLE orders -- 주문 테이블에 비회원 주문을 위한 컬럼 추가
 ADD COLUMN guest_id INT DEFAULT NULL, -- 비회원 주문 시 해당 guest_id 저장
 ADD FOREIGN KEY (guest_id) REFERENCES guests(gid) ON DELETE CASCADE; -- 비회원 정보가 삭제되면 관련 주문도 삭제
@@ -298,4 +314,6 @@ FROM products
 LEFT JOIN order_items ON products.pid = order_items.product_id -- 상품이 포함된 주문 내역과 연결
 LEFT JOIN cart ON products.pid = cart.product_id -- 상품이 장바구니에 담긴 내역과 연결
 LEFT JOIN favorites ON products.pid = favorites.product_id; -- 상품이 좋아요된 내역과 연결
+ 
+ 
  

@@ -9,7 +9,7 @@ export const getId = async (req,res) => {
 
 // 회원 등록
 export const registCustomer = async(req,res) => {
-    // console.log('회원가입',req.body);
+    console.log('회원가입',req.body);
     
     const result = await repository.registCustomer(req.body);
     res.json(result);
