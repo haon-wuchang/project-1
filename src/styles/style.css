@@ -1297,27 +1297,7 @@ footer .etc .etc-right{
 .share .sns .url {
     background: url(https://www.ssfshop.com/v3/images/svgs/copy-url.svg) left center / 24px auto no-repeat;
 } */
-/*하온추가*/
-.haon-facebook , .haon-twitter , .haon-pinterest, .notover>span:first-child{
-    padding: 0px 10px;
-}
-/*하온추가*/
-.haon-facebook , .haon-twitter , .haon-pinterest, .haon-url ,.notover>span{
-    font-size: 25px;
-    color: black;
-}
-.haon-url, .notover>span>:last-child {
-    padding-left: 10px;
-}
-.detail-top-right{
-    display: flex;
-    align-items: center;
-}
-.detail-top-right>span{
-    font-size: 25px;
-    color: black;
-   
-}
+
 
 
 
@@ -1778,64 +1758,9 @@ footer .etc .etc-right{
     color: var(--black);
 }
 
-
-
-/* 슬라이드 */
-/* @keyframes slider {
-    0% {
-      transform: translateX(0);
-    }
-  
-    26% {
-      transform: translateX(0);
-    }
-    33% {
-      transform: translateX(-100%);
-      animation-timing-function: step-end;
-    }
-    93% {
-      transform: translateX(100%);
-    }
-  
-    100% {
-      transform: translateX(0);
-    }
-  } */
-
-  .slide {
-    display: flex;
-    transition: transform 0.5s ease;    
-    &.active {
-      transform: translateX(0);
-    }
-    &:not(.active) {
-      transform: translateX(100%);
-    }
-}
-.aa {
-    border: 1px solid red;
-    z-index: 100;
-}
-
-/* translatex = 0 이면 그냥 화면 중간임 여기서 -이면 중간기준 왼쪽으로 가고 
-+ 이면 중간기준 오른쪽으로감 */
-
-.trans-1{
-    border: 1px solid red;
-    width: 100px;
-    transform: translateX(0);
-
-}
-
-.trans-2{
-    border: 1px solid blue;
-    width: 100px;
-    transform: translateX(100px);
-
-}
-
-
-
+/***********************************************************  */
+/****************       슬라이드     ***************************  */
+/********************************************************  */
 .slide-box{
     /* border: 1px solid red; */
     margin: auto;
@@ -1976,8 +1901,9 @@ footer .etc .etc-right{
     position: absolute;
     width: 100%;
 }
-
-/* 회원가입- 하온//////////////////////// */
+/* ********************************************************** */
+/* ************                회원가입    ***************** */
+/* ******************************************************** */
 .signupBox{
     margin: 0 auto;
     width: 1440px;
@@ -2100,7 +2026,9 @@ footer .etc .etc-right{
     border: 1px solid red !important;
 }
 
-/* 1440px myPqge */
+/* ************************************************ */
+/****************myPqge                                */
+/* ***************************************************** */
 .mypage-box{
     width: 1440px;
     margin: auto;
@@ -2304,4 +2232,29 @@ footer .etc .etc-right{
 }
 .mypage-wishList-items>div{
     border: 1px solid red;
+}
+
+
+
+/* ******************************************** */
+/* 상품상세페이지 url 호버 시 메뉴 바뀌는 부분  */
+/* ************************************************ */
+.over-facebook , .over-twitter , .over-pinterest, .notover>span:first-child{
+    padding: 0px 10px;
+}
+.over-facebook , .over-twitter , .over-pinterest, .over-url ,.notover>span{
+    font-size: 25px;
+    color: black;
+}
+.over-url, .notover>span>:last-child {
+    padding-left: 10px;
+}
+.detail-top-right{
+    display: flex;
+    align-items: center;
+}
+.detail-top-right>span{
+    font-size: 25px;
+    color: black;
+   
 }
