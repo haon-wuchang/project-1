@@ -1,4 +1,6 @@
-export default function OrderHead(){
+import Button from "../../commons/Button";
+
+export default function CartOrderHead(){
     return (
         <div className="order_set order_set_head">
                                 {/* <p class="null">장바구니에 담긴 상품이 없습니다.</p> */}
@@ -12,7 +14,8 @@ export default function OrderHead(){
                                                 id="cartAllCheckbox0"/><i></i><span>전체선택</span></label>
                                             </th>
                                             <th className="submit">
-                                                <a href="#" className="btn" style={{backgroundColor:"yellowgreen"}}>선택 상품 삭제</a>
+                                                {/* <a href="#" className="btn" style={{backgroundColor:"yellowgreen"}}>선택 상품 삭제</a> */}
+                                                <Button title="선택 상품 삭제"></Button>
                                             </th>
                                         </tr>
                                     </thead>
