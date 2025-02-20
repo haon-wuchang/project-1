@@ -8,7 +8,6 @@ set @count = 0 ;
 update `customers` set customer_id = @count :=@count+1;
 
 select * from customers;
-delete from customers where customer_id = '3';
 
 -- 관리자 테이블
 CREATE TABLE admins ( -- 관리자 정보를 저장하는 테이블 생성

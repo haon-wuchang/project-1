@@ -101,7 +101,10 @@ export default function Signup(){
                                         </div>
                                         </>
                                         ) : (
-                                        <input type={(name==='pwd' || name==='cpwd') ? 'password': 'text'} 
+                                        <input type={(name==='pwd' || name==='cpwd') ? 'password': 
+                                            (
+                                                (name === 'phone') ? 'number' : 'text'
+                                            )} 
                                             onChange={handleSignupForm} 
                                             name= {name}
                                             ref= {refs.current[name.concat('Ref')]} 
