@@ -8,7 +8,7 @@ export const initDatas = () => {
         '이름을 입력해주세요','휴대폰번호를 ( - ) 포함하여 입력해주세요',
         '주소를 입력해주세요','이메일주소를 입력해주세요'];
 
-
+        
 
     const formData = names.reduce((acc,name)=>{
         acc[name] = '';

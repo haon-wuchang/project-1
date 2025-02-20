@@ -18,6 +18,8 @@ export const getId = async({id}) => {
 // 회원가입폼 db 저장
 export const registCustomer = async(data) => {
     
+    // console.log('teste',data);
+    
     const sql = `
                 insert into customers(
                         username, 
@@ -28,7 +30,7 @@ export const registCustomer = async(data) => {
                         address
                         )
                     values(
-                    ?,concat(?,'@','naver.com'),?,?,?,?
+                    ?,?,?,?,?,?
                     )
                 `;
     const values = [

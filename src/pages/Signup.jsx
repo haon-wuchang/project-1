@@ -47,6 +47,7 @@ export default function Signup(){
             }   
         } 
     }
+    console.log('data',data);
     
     return (
         <>
@@ -63,7 +64,7 @@ export default function Signup(){
                                         <input type="text"  
                                             onChange={handleSignupForm} 
                                             name={name}
-                                            ref={refs.current[name.concat('Ref')]}
+                                            ref={refs.current[name.concat('Ref')]} 
                                             placeholder={placeholder[name]}/>
                                         <span className="emailEmt">@</span>
                                         <select name="emailDomain" id="" onChange={handleSignupForm}

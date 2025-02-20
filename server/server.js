@@ -15,7 +15,7 @@ server.use(cors());
 
 // 서버의 요청처리를 위한 미들웨어 정의 //
 server.use('/user', signupRouter);
-server.use('/user', loginRouter);
+// server.use('/user', loginRouter);
 server.use('/product', productRouter);
 
 
