@@ -1,25 +1,22 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { SlArrowRight } from "react-icons/sl";
-import { Link } from "react-router-dom";
-import EditMyInfo from './orderCancle/EditMyInfo';
 
-export default function EditMember() {
-    // const category = {
-    //     'myinfo':myinfo
-    // };
-    // 이거 카테고리 눌러서 넘어가는거 쇼피에 잇자나 그거 참고행
 
+export default function OrderCancle() {
+
+    // customer_name, order_list, 등
 
     return (
-        <div className="mypage-box">
+<div className="mypage-box">
         <div className="mypage-top-menu">
             <span>Home</span>
             <SlArrowRight className="mypage-top-menu-icon"/>
-            <span ><Link to = '/person'className='mypage-link' >마이페이지</Link></span>
+            <span ><Link to = '/person' className='mypage-link' >마이페이지</Link></span>
         </div>
         <div className="mypage-top-box-flex">
             <div className="mypage-top-box-empty"></div>
-            <div  className="mypage-top-box  mypage-Title">회원정보 관리</div>
+            <div  className="mypage-top-box   mypage-Title"  >주문/교환/반품/취소 내역</div>
         </div>
         <div className="mypage-bottom-box">
             <nav className="mypage-bottom-left">
@@ -58,28 +55,33 @@ export default function EditMember() {
                 </ul>
             </nav>
             <article className="mypage-bottom-right">
-                <div className='mypage-user-info'>
-                    <ul>
-                        <li>내정보 관리</li>
-                        <li className='mypage-user-info-tab' >
-                            <span>회원정보 수정</span><span><SlArrowRight /></span>
-                            </li>
-                        <li className='mypage-user-info-tab'>
-                            <span>사이즈 관리</span><span><SlArrowRight /></span>
-                            </li>
-                        <li className='mypage-user-info-tab'>
-                            <span>환불계좌 관리</span><span><SlArrowRight /></span>
-                            </li>
-                        <li className='mypage-user-info-tab'>
-                            <span>마케팅정보 수신 동의</span><span><SlArrowRight /></span>
-                            </li>
-                        <li className='mypage-user-info-tab'>
-                            <span>배송지 관리</span><span><SlArrowRight /></span>
-                            </li>
-                    </ul>
-                </div>                
-            {/* 해당하는탭클릭하면 그 컴포넌트로이동하게 만들어 온클릭해서  */}
-                <EditMyInfo />
+                <div className='order-list-date'>
+                    <div className='order-date'>
+                        <ul>
+                            <li>3개월</li>
+                            <li>6개월</li>
+                            <li>12개월</li>
+                            <li>날짜지정</li>
+                        </ul>
+                    </div>
+                    <div className='order-list'>
+                        <ul>
+                            <li className='order-list-active'>주문</li>
+                            <li>교환</li>
+                            <li>반품</li>
+                            <li>취소</li>
+                        </ul>
+                        <div>
+                            내역이 없습니다
+                        </div>
+                    </div>
+                </div>
+                <div className='order-list-ordertab'>
+                    <div>
+                        <span>주문 진행 단계 안내</span>
+                        <span> 화살표 </span>
+                    </div>
+                </div>
             </article>
         </div>
     </div>

@@ -14,13 +14,17 @@ export default function Person(){
             <div className="mypage-top-menu">
                 <span>Home</span>
                 <SlArrowRight className="mypage-top-menu-icon"/>
-                <span>마이페이지</span>
+            <span ><Link to = '/person' className='mypage-link' >마이페이지</Link></span>
+            </div>
+            <div className="mypage-top-box-flex">
+                <div className="mypage-top-box-empty"></div>
+                <div  className="mypage-top-box">마이페이지</div>
             </div>
             <div className="mypage-bottom-box">
                 <nav className="mypage-bottom-left">
                     <h3>주문관리</h3>
                     <ul>
-                        <li><a href="">주문/교환/반품/취소 내역</a></li>
+                        <li><Link to='/person/orderChangeReturnCancle'>주문/교환/반품/취소 내역</Link></li>
                         <li><a href="">매장 구매내역</a></li>
                     </ul>
                     <h3>나의 혜택</h3>
@@ -53,7 +57,6 @@ export default function Person(){
                     </ul>
                 </nav>
                 <article className="mypage-bottom-right">
-                <div  className="mypage-top-box">마이페이지</div>
                     <div className="mypage-bottom-my">
                         <div className="mypage-bottom-my-top">   
                             <div className="mypage-bottom-my-top-left">

@@ -2052,12 +2052,26 @@ footer .etc .etc-right{
     font-size: 11px;
     padding: 0 4px;
 }
-.mypage-top-box{
+
+.mypage-top-box-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.mypage-top-box-empty{
     text-align: center;
-    width: 100%;
+    width: 240px;
     font-size: 35px;
     padding: 20px 0;
+    /* border: 1px solid red; */
 }
+.mypage-top-box{
+    text-align: center;
+    width: 1200px;
+    font-size: 35px;
+    padding: 20px 0;
+    /* border: 1px solid red; */
+}
+
 .mypage-bottom-box{
     display: flex;
     justify-content: space-between;
@@ -2257,4 +2271,91 @@ footer .etc .etc-right{
     font-size: 25px;
     color: black;
    
+}
+
+
+/* ******************************************** */
+/* 마이페이지 주문/교환/반품/취소 내역 */
+/* ************************************************ */
+
+.mypage-Title {
+    border-bottom: 3px solid black;
+    font-weight: 500;
+    font-size: 35px;
+}
+.order-list-date{
+    /* border: 1px solid red; */
+    padding: 30px 0;
+}
+.order-date{
+    /* border: 1px solid red; */
+    margin: auto;
+    padding-bottom: 20px;
+
+}
+.order-date > ul {
+    display: flex;
+    gap: 10px;
+    justify-content:flex-end;
+}
+.order-date > ul > li {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.order-list{
+    height: 300px;
+}
+.order-list >ul{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.order-list >ul > li {
+    padding: 18px 40px;
+    text-align: center;
+    border: 1px solid rgb(0, 0, 0);
+    width: 100%;
+}
+.order-list-active{
+    background-color: black;
+    color: white;
+}
+.order-list >div{
+    text-align: center;
+    padding: 30px 0;
+}
+.order-list-ordertab{
+    border-top: 1px solid black;
+    padding: 15px 0;
+}
+.mypage-link {
+    color: black;
+}
+
+
+/* ******************************************** */
+/* 마이페이지 회원정보관리 */
+/* ************************************************ */
+.mypage-user-info{
+    /* border: 1px solid red; */
+}
+.mypage-user-info > ul > li{
+    padding: 20px 0;
+    border-bottom: 1px solid rgb(179, 178, 178);
+    font-size: 18px;
+}
+.mypage-user-info > ul > li:first-child{
+    font-size: 23px ;
+    font-weight: 700;
+}
+.mypage-user-info-tab{
+    display: flex;
+    justify-content: space-between;
+}
+.mypage-user-info-tab > span{
+    margin: 0;
+}
+.mypage-user-info-tab > span:last-child{
+    padding-right: 30px;
 }

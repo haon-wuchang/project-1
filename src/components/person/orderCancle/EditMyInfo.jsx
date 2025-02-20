@@ -1,15 +1,8 @@
 import React from 'react';
 import { SlArrowRight } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import EditMyInfo from './orderCancle/EditMyInfo';
 
-export default function EditMember() {
-    // const category = {
-    //     'myinfo':myinfo
-    // };
-    // 이거 카테고리 눌러서 넘어가는거 쇼피에 잇자나 그거 참고행
-
-
+export default function EditMyInfo() {
     return (
         <div className="mypage-box">
         <div className="mypage-top-menu">
@@ -19,7 +12,7 @@ export default function EditMember() {
         </div>
         <div className="mypage-top-box-flex">
             <div className="mypage-top-box-empty"></div>
-            <div  className="mypage-top-box  mypage-Title">회원정보 관리</div>
+            <div  className="mypage-top-box  mypage-Title">비밀번호 확인</div>
         </div>
         <div className="mypage-bottom-box">
             <nav className="mypage-bottom-left">
@@ -57,29 +50,8 @@ export default function EditMember() {
                     <li><a href="">A/S 수선</a></li>
                 </ul>
             </nav>
-            <article className="mypage-bottom-right">
-                <div className='mypage-user-info'>
-                    <ul>
-                        <li>내정보 관리</li>
-                        <li className='mypage-user-info-tab' >
-                            <span>회원정보 수정</span><span><SlArrowRight /></span>
-                            </li>
-                        <li className='mypage-user-info-tab'>
-                            <span>사이즈 관리</span><span><SlArrowRight /></span>
-                            </li>
-                        <li className='mypage-user-info-tab'>
-                            <span>환불계좌 관리</span><span><SlArrowRight /></span>
-                            </li>
-                        <li className='mypage-user-info-tab'>
-                            <span>마케팅정보 수신 동의</span><span><SlArrowRight /></span>
-                            </li>
-                        <li className='mypage-user-info-tab'>
-                            <span>배송지 관리</span><span><SlArrowRight /></span>
-                            </li>
-                    </ul>
-                </div>                
-            {/* 해당하는탭클릭하면 그 컴포넌트로이동하게 만들어 온클릭해서  */}
-                <EditMyInfo />
+            <article className="mypage-bottom-right">                      
+                    여기에 만들엉
             </article>
         </div>
     </div>
