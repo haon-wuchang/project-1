@@ -3,7 +3,7 @@ create database shopping_mall;
 USE shopping_mall; 
 -- drop database shopping_mall;
 show tables;
-select * from products;
+select * from customers;
 
 
 -- 관리자 테이블

@@ -1632,7 +1632,7 @@ footer .etc .etc-right{
     padding: 20px 0;
     font-size: 15px;
 }
-.goods-info-bottom-color, .goods-info-bottom-size{
+.goods-info-bottom-color, .goods-info-bottom-size, .goods-info-bottom-delivery{
     /* border: 1px solid red; */
     margin-bottom: 11px;
     display: flex;
@@ -1640,7 +1640,8 @@ footer .etc .etc-right{
     align-items: center;
 }
 .goods-info-bottom-color > span ,.goods-info-bottom-color>ul,
-.goods-info-bottom-size > span ,.goods-info-bottom-size>ul {
+.goods-info-bottom-size > span ,.goods-info-bottom-size>ul 
+, .goods-info-bottom-delivery >span , .goods-info-bottom-delivery>ul {
     margin: 0;
 }
 .goods-info-bottom-color > span{
@@ -1655,12 +1656,25 @@ footer .etc .etc-right{
     /* border: 1px solid black; */
     font-weight: 600;
 }
+.goods-info-bottom-delivery >span {
+    display: block;
+    width: 100px;
+    /* border: 1px solid black; */
+    font-weight: 600;
+}
 .goods-info-bottom-color>ul ,.goods-info-bottom-size>ul{
     display: flex; 
     flex-wrap: wrap;
     gap: 10px;
 }
-.goods-info-bottom-size>ul>li{
+.goods-info-bottom-delivery>ul>li{
+    border: 1px solid rgb(176, 176, 176);
+    border-radius: 3px;
+    padding: 5px 10px;
+    text-align: center;
+    width: 70px; 
+}
+.goods-info-bottom-size>ul>li {
     border: 1px solid rgb(176, 176, 176);
     border-radius: 3px;
     padding: 5px 10px;
