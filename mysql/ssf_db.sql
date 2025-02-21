@@ -2,7 +2,9 @@ show databases;
 create database shopping_mall;
 USE shopping_mall; 
 -- drop database shopping_mall;
--- show tables;
+show tables;
+select * from products;
+
 
 -- 관리자 테이블
 CREATE TABLE admins ( -- 관리자 정보를 저장하는 테이블 생성
@@ -21,7 +23,7 @@ INSERT INTO admins (username, email, password, role, is_active) VALUES
 ('superadmin', 'superadmin@google.com', 'superadmin123', 'super_admin', TRUE),
 ('manager1', 'manager1@naver.com', 'manager1123', 'product_manager', TRUE),
 ('manager2', 'manager2@daum.com', 'manager2123', 'product_manager', TRUE);
-
+-- select * from products;
 select count(*) as result_rows
         from admins
         where username = 'superadmin' and password = 'superadmin123';
@@ -79,20 +81,19 @@ CREATE TABLE products ( -- 상품 정보를 저장하는 테이블 생성
     cart_count INT DEFAULT 0, -- 상품이 장바구니에 담긴 횟수 (기본값: 0)
     star DECIMAL(2,1) CHECK (star >= 0 AND star <= 5), -- 상품 평점 (0~5점 사이, 소수점 한 자리)
     stock INT NOT NULL DEFAULT 0, -- 상품 재고 수량 (기본값: 0, 0이면 품절)
-    -- original_price INT NOT NULL, -- 상품 원래 가격 (필수 입력)
+    original_price INT NOT NULL, -- 상품 원래 가격 (필수 입력)
     discount_rate INT DEFAULT 0, -- 할인율 (기본값: 0, 최대 100%까지 가능)
     discounted_price INT NOT NULL, -- 할인 적용된 최종 가격 (필수 입력)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 상품 등록 시간 (자동 기록)
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 상품 정보 수정 시간 (수정될 때마다 자동 갱신)
-    
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 상품 정보 수정 시간 (수정될 때마다 자동 갱신)
 );
 ALTER TABLE products 
 ADD COLUMN brand VARCHAR(100);
 ALTER TABLE products 
 ADD COLUMN delivery_fee VARCHAR(100) not null;
--- select count(*), brand from products group by brand;
+select count(*), brand from products group by brand;
 -- select * from products;
--- DELETE FROM products WHERE pid BETWEEN 1001 AND 1050;
+DELETE FROM products WHERE pid BETWEEN 1001 AND 1050;
 
 
 -- 관리자별 상품 접근 권한 테이블
@@ -121,11 +122,11 @@ CREATE TABLE favorites ( -- 고객이 좋아요(찜)한 상품 정보를 저장�
     fid INT auto_increment PRIMARY KEY, -- 고유한 좋아요 ID (기본 키, JSON에서 직접 부여)
     customer_id INT NOT NULL, -- 좋아요를 누른 고객 ID (외래 키)
     product_id INT NOT NULL, -- 좋아요한 상품 ID (외래 키)
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 좋아요를 누른 시간 (자동 기록)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 좋아요를 누른 시간 (자동 기록)
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE, -- 고객이 삭제되면 해당 좋아요 기록도 삭제
     FOREIGN KEY (product_id) REFERENCES products(pid) ON DELETE CASCADE -- 상품이 삭제되면 좋아요 기록도 삭제
 );
-drop table favorites;
+-- drop table favorites;
 
 -- 주문 테이블 (super_admin만 접근 가능)
 CREATE TABLE orders ( -- 고객의 주문 정보를 저장하는 테이블 생성
@@ -308,6 +309,4 @@ FROM products
 LEFT JOIN order_items ON products.pid = order_items.product_id -- 상품이 포함된 주문 내역과 연결
 LEFT JOIN cart ON products.pid = cart.product_id -- 상품이 장바구니에 담긴 내역과 연결
 LEFT JOIN favorites ON products.pid = favorites.product_id; -- 상품이 좋아요된 내역과 연결
- 
- 
  
