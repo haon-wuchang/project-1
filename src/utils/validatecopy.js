@@ -1,4 +1,3 @@
-import { expr } from "jquery";
 
 export const signupValidate = (refs,error,setError,isChecked1,isChecked2) => {   
 

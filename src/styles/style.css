@@ -1949,7 +1949,7 @@ footer .etc .etc-right{
 .signup-top:last-child >label{
     font-weight: 700;
 }
-.signup-top > input:not(.test) {
+.signup-top > input:not(.signup-address-extra) {
     width: 100%;
     height: 35px;
 }

@@ -5,7 +5,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Layout from './pages/Layout.jsx';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx'
+import Signup2 from './pages/Signup2.jsx'
 import Carts from './pages/Carts.jsx';
 import Person from './pages/Person.jsx';
 import Products from './pages/Products.jsx';
@@ -24,7 +24,7 @@ function App() {
                     <Route index element={<Home/>}></Route>
                     <Route path='/all' element={<Products/>}></Route>    
                     <Route path='/login' element={<Login/>}></Route>    
-                    <Route path='/signup' element={<Signup/>}></Route>    
+                    <Route path='/signup' element={<Signup2/>}></Route>    
                     <Route path='/carts' element={<Carts/>}></Route>    
                     <Route path='/person' element={<Person/>}></Route>
                     <Route path='/person/orderChangeReturnCancle' element={<OrderCancle/>}></Route>

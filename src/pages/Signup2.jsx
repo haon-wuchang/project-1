@@ -1,12 +1,28 @@
 import { useRef, useState } from "react";
-import {signupValidate,errorCheck} from '../utils/validate.js';
+import {signupValidate,errorCheck} from '../utils/validatecopy.js';
 import React from 'react';
-// 작동잘됨 이제 로직 간결하게 줄이는 작업하고
-// 아디중복체크 서버 연동해서 비교하고
-// 회원가입하면 서버에 저장되게 작업
+import DaumPostcode from "react-daum-postcode";
 
+export default function Signup2(){
+    //---- DaumPostcode 관련 디자인 및 이벤트 시작 ----//
+    const themeObj = {
+        bgColor: "", 			// 바탕 배경색
+        searchBgColor: "", 		// 검색창 배경색
+        contentBgColor: "", 		// 본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+        pageBgColor: "", 		// 페이지 배경색
+        textColor: "", 			// 기본 글자색
+        queryTextColor: "", 		// 검색창 글자색
+        postcodeTextColor: "", 	// 우편번호 글자색
+        emphTextColor: "", 		// 강조 글자색
+        outlineColor: "" 		// 테두리
+    };
 
-export default function Signup(){
+    const postCodeStyle = {
+        width: "360px",
+        height: "480px",
+    };
+//---- DaumPostcode 관련 디자인 및 이벤트 종료 ----//
+
     // const navigate = useNavigate();
     const formData = {'id':'',
                     'pwd':'',
@@ -19,6 +35,7 @@ export default function Signup(){
                 }
   
     const [data, setData] = useState(formData);
+    const [error, setError] = useState({});
 
     const refs = {
         'idRef':useRef(null),
@@ -30,17 +47,6 @@ export default function Signup(){
         'addressRef':useRef(null),
         'emailRef':useRef(null),
         'emailDomainRef':useRef(null)
-    };
-    const msgRefs = {
-        'idMsgRef':useRef(null),
-        'idCheckRef':useRef(null),
-        'pwdMsgRef':useRef(null),
-        'cpwdMsgRef':useRef(null),
-        'usernameMsgRef':useRef(null),
-        'phoneMsgRef':useRef(null),
-        'addressMsgRef':useRef(null),
-        'emailMsgRef':useRef(null),
-        'emailDomainMsgRef':useRef(null)
     };
 
     //체크박스 상태 관리
@@ -127,14 +133,14 @@ export default function Signup(){
                                     name= 'id'
                                     ref={refs.idRef} 
                                     className="dupliInput"
-                                    placeholder="영문/숫자 조합으로 6~50자 사이로 입력해주세요"/>
+                                    placeholder="6~20자 사이로 입력해주세요"/>
                                 <button type='button' onClick={handleIdCheck} className="dupliId"
                                     ref ={refs.idCheckRef}>
                                     중복확인
                                 </button>
                             </div>
                         <span className="signup-err"   style={{color:'red'}}                          
-                           ref={msgRefs.idMsgRef}>아이디를 입력해주세요</span>
+                           >아이디를 입력해주세요</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호</label>
@@ -142,7 +148,7 @@ export default function Signup(){
                             onChange={handleSignupForm} 
                             name= 'pwd'
                             ref={refs.pwdRef}
-                            placeholder="영문/숫자 조합으로 8~16자 사이로 입력해주세요"/>
+                            placeholder="10~16자 사이로 입력해주세요"/>
                         <span className="signup-err"  style={{color:'red'}}  
                              >{error.pwd}</span>
                     </li>
@@ -169,21 +175,34 @@ export default function Signup(){
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">연락처</label>
-                        <input type="text"  
+                        <input type="number"  
                             onChange={handleSignupForm} 
                                 name="phone"
                             ref={refs.phoneRef}
-                            placeholder="- 포함 13자리를 입력해주세요"/>
+                            placeholder="-제외 11자리를 입력해주세요"/>
                         <span className="signup-err"   style={{color:'red'}}                           
                              >{error.phone}</span>
                     </li>
-                    <li className="signup-top">
-                        <label htmlFor="">주소</label>
-                        <input type="text"  
-                            onChange={handleSignupForm} 
-                            name="address"
-                            ref={refs.addressRef}
-                            placeholder="기본 배송주소를 입력해주세요"/>
+                    <li className="signup-top ">
+                        <div className="signup-address">
+                            <label htmlFor="">주소</label>
+                            <button >배송지 선택</button>
+                        </div>
+                        {/* <div>
+                            <DaumPostcode
+                            />
+                        </div> */}
+                        <div className="signup-address-line">
+                            <input type="text" name=""
+                                placeholder="우편번호"/>
+                            <input type="text"  
+                                onChange={handleSignupForm} 
+                                name="address"
+                                ref={refs.addressRef}
+                                placeholder="배송주소를 선택해주세요"/>
+                        </div>
+                        <input className="signup-address-extra"
+                            type="text" placeholder="상세 주소를 입력해주세요" />
                         <span className="signup-err"  style={{color:'red'}}                               
                             >{error.address}</span>
                     </li>

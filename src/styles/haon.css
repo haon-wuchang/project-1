@@ -1,1 +1,46 @@
-/* 2.21 부터 css 는 각자 파일만들어서 작업 */
+/* 회원가입 추가 css */
+.signup-address > label{
+    padding-right: 10px;
+}
+.signup-address> button {
+    background-color: rgb(206, 60, 243);
+    color: white;
+    padding: 3px 5px;
+    border-radius: 4px;
+
+}
+.signup-address {
+    padding-bottom: 5px;
+}
+.signup-address-line{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    width: 100%;
+    padding-bottom: 5px;
+
+}
+.signup-address-line >input:first-child{
+    width: 100px;
+    margin-right: 5px;
+    
+}
+.signup-address-line >input:last-child{
+    width: 100%;
+    margin: 0;
+}
+.signup-address-line >input {
+    height: 35px;
+    margin: 0;
+    padding: 0;
+}
+.signup-address-extra{
+    display: inline-block;
+    width: 476px;
+    height: 35px;
+    /* background-color: black; */
+}
+.signup-top > input:not(.signup-address-extra) { 
+    width: 100%;
+    height: 35px;
+}
