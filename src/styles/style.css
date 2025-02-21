@@ -2204,6 +2204,11 @@ footer .etc .etc-right{
     margin-top: 20px;
     font-size: 14px;
     text-align: center;
+    
+}
+.mypage-order-product-bottom>div>span{
+    color: black;
+
 }
 .mypage-active{
     padding: 20px 0;
