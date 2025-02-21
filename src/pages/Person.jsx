@@ -107,7 +107,8 @@ export default function Person(){
                             </div>
                         </div>
                         <div className="mypage-order-product-bottom">
-                            <span>최근 주문 내역이 없습니다</span>
+                            <span>최근 주문 내역이 없습니다. 마음에드는 상품을 찾아보세요.</span>
+                            <div>쇼핑하기 <span><MdKeyboardArrowRight /></span></div>
                         </div>
                     </div>
                     <div className="mypage-wishList" >

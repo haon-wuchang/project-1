@@ -2196,6 +2196,15 @@ footer .etc .etc-right{
     text-align: center;
     padding: 20px 0;
 }
+.mypage-order-product-bottom>div{
+    padding: 6px 0;
+    border: 1px solid rgb(173, 173, 173);
+    border-radius: 4px;
+    width: 200px;
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+}
 .mypage-active{
     padding: 20px 0;
 
