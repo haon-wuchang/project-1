@@ -47,7 +47,7 @@ export default function Signup(){
             }   
         } 
     }
-    console.log('data',data);
+    console.log('회원가입data',data);
     
     return (
         <>
@@ -104,7 +104,7 @@ export default function Signup(){
                                         ) : (
                                         <input type={(name==='pwd' || name==='cpwd') ? 'password': 
                                             (
-                                                (name === 'phone') ? 'number' : 'text'
+                                                (name === 'phone') ? 'tel' : 'text'
                                             )} 
                                             onChange={handleSignupForm} 
                                             name= {name}
@@ -112,7 +112,6 @@ export default function Signup(){
                                             placeholder={placeholder[name]}
                                             onBlur={
                                                 (name==='cpwd') ? ()=>{handlePasswordCheck(
-                                                    // error,setError,
                                                     refs.current['pwdRef'],
                                                     refs.current['cpwdRef'],
                                                     refs.current['usernameRef'],

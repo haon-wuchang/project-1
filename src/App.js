@@ -1,6 +1,7 @@
 import style from './styles/style.css';
+import haon from './styles/haon.css';
 import React, {useState} from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'; //react-router-dom에서 제공하는 컴포넌트
+import {BrowserRouter, Routes, Route} from 'react-router-dom'; 
 import Layout from './pages/Layout.jsx';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
