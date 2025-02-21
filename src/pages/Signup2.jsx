@@ -4,24 +4,8 @@ import React from 'react';
 import DaumPostcode from "react-daum-postcode";
 
 export default function Signup2(){
-    //---- DaumPostcode 관련 디자인 및 이벤트 시작 ----//
-    const themeObj = {
-        bgColor: "", 			// 바탕 배경색
-        searchBgColor: "", 		// 검색창 배경색
-        contentBgColor: "", 		// 본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
-        pageBgColor: "", 		// 페이지 배경색
-        textColor: "", 			// 기본 글자색
-        queryTextColor: "", 		// 검색창 글자색
-        postcodeTextColor: "", 	// 우편번호 글자색
-        emphTextColor: "", 		// 강조 글자색
-        outlineColor: "" 		// 테두리
-    };
 
-    const postCodeStyle = {
-        width: "360px",
-        height: "480px",
-    };
-//---- DaumPostcode 관련 디자인 및 이벤트 종료 ----//
+
 
     // const navigate = useNavigate();
     const formData = {'id':'',
@@ -186,12 +170,23 @@ export default function Signup2(){
                     <li className="signup-top ">
                         <div className="signup-address">
                             <label htmlFor="">주소</label>
-                            <button >배송지 선택</button>
+                            <button type = 'button'>배송지 선택</button>
                         </div>
-                        {/* <div>
+                        {/* {isOpen &&
+                        <div>
                             <DaumPostcode
+                                className="postmodal"
+                                theme={themeObj}
+                                style={postCodeStyle}
+                                onComplete={completeHandler} 
+                                onClose={closeHandler}
                             />
-                        </div> */}
+                        </div>
+                        }
+                        <div>{address}</div>
+                        <div>{zonecode}</div> */}
+
+
                         <div className="signup-address-line">
                             <input type="text" name=""
                                 placeholder="우편번호"/>
@@ -206,11 +201,12 @@ export default function Signup2(){
                         <span className="signup-err"  style={{color:'red'}}                               
                             >{error.address}</span>
                     </li>
-                    <li className="signup-top">
+                    <li className="signup-top ">
                         <label htmlFor="">이메일</label>
                         <input type="text"  
                             onChange={handleSignupForm} 
                             name="email"
+                            className="signup-email-line"
                             ref={refs.emailRef}
                             placeholder="이메일 주소를 입력해주세요"/>
                         <span className="emailEmt">@</span>

@@ -3,7 +3,7 @@
     padding-right: 10px;
 }
 .signup-address> button {
-    background-color: rgb(206, 60, 243);
+    background-color: #7E00FF;
     color: white;
     padding: 3px 5px;
     border-radius: 4px;
@@ -40,7 +40,7 @@
     height: 35px;
     /* background-color: black; */
 }
-.signup-top > input:not(.signup-address-extra) { 
+.signup-top > input:not(.signup-address-extra, .signup-email-line) { 
     width: 100%;
     height: 35px;
 }
