@@ -6,7 +6,7 @@ if(refs.idRef.current.value === ''){
     refs.idRef.current.focus();
     return false;
 }else if(refs.idRef.current.value.length < 6){
-    alert('6자 이상 아이디를 입력해주세요');
+    setError({...error, ['id']:'6자 이상 아이디를 입력해주세요'});
     refs.idRef.current.value = '';
     refs.idRef.current.focus();     
     return false;   
@@ -14,6 +14,11 @@ if(refs.idRef.current.value === ''){
     setError({...error, ['pwd']:'비밀번호를 입력해주세요'});
     refs.pwdRef.current.focus();
     return false;
+}else if(refs.pwdRef.current.value.length < 10){
+    setError({...error, ['pwd']:'10자 이상 비밀번호를 입력해주세요'});
+    refs.pwdRef.current.value = '';
+    refs.pwdRef.current.focus();     
+    return false;   
 }else  if(refs.cpwdRef.current.value === ''){
     setError({...error, ['cpwd']:'비밀번호확인을 입력해주세요'});
     refs.cpwdRef.current.focus();
@@ -26,22 +31,24 @@ if(refs.idRef.current.value === ''){
     setError({...error, ['phone']:'휴대폰번호를 입력해주세요'});
     refs.phoneRef.current.focus();
     return false;
-}else if(refs.phoneRef.current.value.length < 13){
+}else if(refs.phoneRef.current.value.length < 11){
     alert('연락처를 양식에 맞춰 다시 작성해주세요');
     refs.phoneRef.current.value = '';
     refs.phoneRef.current.focus();
     return false;
-}else if (refs.phoneRef.current.value.slice(3, 4) !== '-') {
-    alert('연락처를 양식에 맞춰 다시 작성해주세요');
-    refs.phoneRef.current.value = '';
-    refs.phoneRef.current.focus();
-    return false;
-}else if (refs.phoneRef.current.value.slice(8,9) !== '-') {
-    alert('연락처를 양식에 맞춰 다시 작성해주세요');
-    refs.phoneRef.current.value = '';
-    refs.phoneRef.current.focus();
-    return false;
-}else  if(refs.addressRef.current.value === ''){
+}
+// else if (refs.phoneRef.current.value.slice(3, 4) !== '-') {
+//     alert('연락처를 양식에 맞춰 다시 작성해주세요');
+//     refs.phoneRef.current.value = '';
+//     refs.phoneRef.current.focus();
+//     return false;
+// }else if (refs.phoneRef.current.value.slice(8,9) !== '-') {
+//     alert('연락처를 양식에 맞춰 다시 작성해주세요');
+//     refs.phoneRef.current.value = '';
+//     refs.phoneRef.current.focus();
+//     return false;
+// }
+else  if(refs.addressRef.current.value === ''){
     setError({...error, ['address']:'주소를 입력해주세요'});
     refs.addressRef.current.focus();
     return false;
@@ -65,16 +72,3 @@ if(refs.idRef.current.value === ''){
 }
 
 
-export const errorCheck = (name,value,error,setError) => {
-    const names = [
-        {"name":"id", "msg":"아디를 입력해주세요"},
-        {"name":"pwd", "msg":"비번을 입력해주세요"},
-        {"name":"cpwd", "msg":"비번확인을 입력해주세요"}
-        ];
-
-    names.map((item)=>
-        (item.name === name) ? (
-            (value ==='') ? setError({...error, [item.name]:item.msg}): setError({...error,[item.name]:''})
-            ): ''
-        );   
-}

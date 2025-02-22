@@ -1,13 +1,14 @@
 import { useRef, useState } from "react";
-import {signupValidate,errorCheck} from '../utils/validatecopy.js';
+import {signupValidate} from '../utils/validatecopy.js';
 import React from 'react';
 import DaumPostcode from "react-daum-postcode";
+import { useNavigate } from "react-router-dom";
+
+// signup2 랑 validatecopy 로 회원가입 쓸거임 
 
 export default function Signup2(){
 
-
-
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const formData = {'id':'',
                     'pwd':'',
                     'cpwd':'',
@@ -29,9 +30,16 @@ export default function Signup2(){
         'usernameRef':useRef(null),
         'phoneRef':useRef(null),
         'addressRef':useRef(null),
+        'zoneCodeRef':useRef(null),
+        'addressDetailRef':useRef(null),
         'emailRef':useRef(null),
         'emailDomainRef':useRef(null)
     };
+
+    const msgRefs = {
+        'idMsgRef':useRef(null),
+        'pwdMsgRef':useRef(null)
+    }
 
     //체크박스 상태 관리
     const [isChecked1, setIsChecked1] = useState(false);
@@ -57,51 +65,68 @@ export default function Signup2(){
         //서버연동해서 아이디 중복체크 진행
             const idV = refs.idRef.current;
             if(idV.value===''){
-                errorCheck('id',idV.value,error,setError);            
+                setError({...error, ['id']:'아이디를 입력해주세요'});
+                idV.focus();
+            }else if(idV.value.length < 6){
+                setError({...error, ['id']:'6자 이상 아이디를 입력해주세요'});
+                idV.value = '';
+                idV.focus();     
             }else {
                 const did = 'testtt';
                 if(idV.value===did){
                     setError({...error,['id']:'사용중인 아이디입니다'});
                     idV.focus();
                 }else{
+                    msgRefs.idMsgRef.current.style.setProperty('color','blue');
                     setError({...error,['id']:'사용가능한 아이디입니다'});
                 }
             }
         }
 
+        
+        const handlePasswordCheck = () => {
+        const pwdCheck = refs.pwdRef.current;
+        const cpwdCheck = refs.cpwdRef.current;
+        
+        if(pwdCheck.value===''){
+            setError({...error,['pwd']:'비밀번호를 입력해주세요'});
+            pwdCheck.focus();
+        } else if(cpwdCheck.value===''){
+            setError({...error,['pwd']:'비밀번호 확인을 입력해주세요'});
+            cpwdCheck.focus();            
+        }else if(pwdCheck.value.length < 10){
+            setError({...error, ['pwd']:'10자 이상 비밀번호를 입력해주세요'});
+            pwdCheck.value = '';
+            cpwdCheck.value='';
+            pwdCheck.focus();     
+            return false;   
+        }else{
+            if(pwdCheck.value===cpwdCheck.value){
+                setError({...error,['pwd']:'비밀번호가 일치합니다'});
+                msgRefs.pwdMsgRef.current.style.setProperty('color','blue');
+            }else{
+                setError({...error,['pwd']:'비밀번호가 동일하지않습니다 다시 입력해주세요'});
+                pwdCheck.value='';
+                cpwdCheck.value='';
+                pwdCheck.focus();
+            }
+        }
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         if(signupValidate(refs,error,setError,isChecked1,isChecked2)){
+            // 서버 연동 
             if(idCheckClick === true){
                 alert('회원가입 성공');
-                // navigate('/login');
+                navigate('/login');
             }else{
-                alert('아이디 중복확인 진행해');
+                alert('아이디 중복확인을 진행해주세요');
                 refs.idCheckRef.current.focus();
             }
         }
         console.log(data);
     }
-
-    const handlePasswordCheck = () => {
-        const pwdCheck = refs.pwdRef.current;
-        const cpwdCheck = refs.cpwdRef.current;
-
-        if(pwdCheck.value===''){
-            pwdCheck.focus();
-        } else if(cpwdCheck.value===''){
-            cpwdCheck.focus();
-            
-        }else{
-            if(pwdCheck.value===cpwdCheck.value){
-            }else{
-                pwdCheck.value='';
-                cpwdCheck.value='';
-                refs.pwdRef.current.focus();
-            }
-        }
-    }
-
+    
     return (
         <>
         <div className="signupBox">
@@ -123,8 +148,9 @@ export default function Signup2(){
                                     중복확인
                                 </button>
                             </div>
-                        <span className="signup-err"   style={{color:'red'}}                          
-                           >아이디를 입력해주세요</span>
+                        <span className="signup-err"  style={{color:'red'}}
+                        ref={msgRefs.idMsgRef}                        
+                           >{error.id}</span>
                     </li>
                     <li className="signup-top">
                         <label htmlFor="">비밀번호</label>
@@ -134,6 +160,7 @@ export default function Signup2(){
                             ref={refs.pwdRef}
                             placeholder="10~16자 사이로 입력해주세요"/>
                         <span className="signup-err"  style={{color:'red'}}  
+                        ref={msgRefs.pwdMsgRef}
                              >{error.pwd}</span>
                     </li>
                     <li className="signup-top">
@@ -188,8 +215,8 @@ export default function Signup2(){
 
 
                         <div className="signup-address-line">
-                            <input type="text" name=""
-                                placeholder="우편번호"/>
+                            <input type="text" name="zoneCode"
+                                placeholder="우편번호" ref={refs.zoneCodeRef}/>
                             <input type="text"  
                                 onChange={handleSignupForm} 
                                 name="address"
@@ -197,7 +224,9 @@ export default function Signup2(){
                                 placeholder="배송주소를 선택해주세요"/>
                         </div>
                         <input className="signup-address-extra"
-                            type="text" placeholder="상세 주소를 입력해주세요" />
+                            type="text" placeholder="상세 주소를 입력해주세요" 
+                            ref={refs.addressDetailRef}
+                            name="addressDetail"/>
                         <span className="signup-err"  style={{color:'red'}}                               
                             >{error.address}</span>
                     </li>
