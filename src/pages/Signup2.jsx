@@ -7,14 +7,52 @@ import { useNavigate } from "react-router-dom";
 // signup2 랑 validatecopy 로 회원가입 쓸거임 
 
 export default function Signup2(){
+    const [adata, setAdata] = useState({});
+    
+    /** 주소검색 버튼Toggle */
+    const [isOpen, setIsOpen] = useState(false);
+    /** 주소 검색 버튼 */
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    };
+    //---- DaumPostcode 관련 디자인 및 이벤트 시작 ----//
+    const themeObj = {
+        bgColor: "#FFFFFF",
+        pageBgColor: "#FFFFFF",
+        postcodeTextColor: "#C05850",
+        emphTextColor: "#222222",
+    };
+    const postCodeStyle = {
+        width: "480px",
+        height: "480px",
+    };
+
+    const completeHandler = (data) => {
+        // console.log(data.zonecode);
+        // console.log(data.address);     
+        setAdata({...adata, zoneCode: data.zonecode, address: data.address });
+    };
+    // console.log('주소',adata);
+
+    const closeHandler = (state) => {
+        if (state === "FORCE_CLOSE") {
+        setIsOpen(false);
+        } else if (state === "COMPLETE_CLOSE") {
+        setIsOpen(false);
+        }
+    };
+    //---- DaumPostcode 관련 디자인 및 이벤트 종료 ----//
 
     const navigate = useNavigate();
+
     const formData = {'id':'',
                     'pwd':'',
                     'cpwd':'',
                     'username':'',
                     'phone':'',
                     'address':'',
+                    'zoneCode':'',
+                    'addressDetail':'',
                     'email':'',
                     'emailDomain':''
                 }
@@ -57,7 +95,7 @@ export default function Signup2(){
         }        
         setData({...data, [name]:value});
     }
-    console.log(data);
+    // console.log(data);
 
     // 아이디 중복체크 클릭여부 함수
     const handleIdCheck = () => {
@@ -84,7 +122,7 @@ export default function Signup2(){
         }
 
         
-        const handlePasswordCheck = () => {
+    const handlePasswordCheck = () => {
         const pwdCheck = refs.pwdRef.current;
         const cpwdCheck = refs.cpwdRef.current;
         
@@ -112,6 +150,8 @@ export default function Signup2(){
             }
         }
     }
+
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         if(signupValidate(refs,error,setError,isChecked1,isChecked2)){
@@ -124,7 +164,7 @@ export default function Signup2(){
                 refs.idCheckRef.current.focus();
             }
         }
-        console.log(data);
+        console.log('폼',data,adata);
     }
     
     return (
@@ -197,9 +237,9 @@ export default function Signup2(){
                     <li className="signup-top ">
                         <div className="signup-address">
                             <label htmlFor="">주소</label>
-                            <button type = 'button'>배송지 선택</button>
+                            <button type = 'button'onClick={handleToggle}>배송지 선택</button>
                         </div>
-                        {/* {isOpen &&
+                        {isOpen &&
                         <div>
                             <DaumPostcode
                                 className="postmodal"
@@ -210,22 +250,24 @@ export default function Signup2(){
                             />
                         </div>
                         }
-                        <div>{address}</div>
-                        <div>{zonecode}</div> */}
-
-
                         <div className="signup-address-line">
-                            <input type="text" name="zoneCode"
-                                placeholder="우편번호" ref={refs.zoneCodeRef}/>
+                            <input type="text" name="zoneCode" 
+                                value={adata.zoneCode}
+                                placeholder="우편번호" 
+                                ref={refs.zoneCodeRef}
+                                onChange={handleSignupForm}/>
                             <input type="text"  
                                 onChange={handleSignupForm} 
                                 name="address"
                                 ref={refs.addressRef}
+                                value={adata.address}
                                 placeholder="배송주소를 선택해주세요"/>
                         </div>
                         <input className="signup-address-extra"
-                            type="text" placeholder="상세 주소를 입력해주세요" 
+                            type="text" 
                             ref={refs.addressDetailRef}
+                            placeholder="상세 주소를 입력해주세요" 
+                            onChange={handleSignupForm}
                             name="addressDetail"/>
                         <span className="signup-err"  style={{color:'red'}}                               
                             >{error.address}</span>
